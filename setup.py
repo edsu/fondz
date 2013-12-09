@@ -1,4 +1,20 @@
+#!/usr/bin/env python
+
+import os
+
 from setuptools import setup, find_packages
+
+# make sure mallet is available
+
+has_mallet = False
+for path in os.environ["PATH"].split(os.pathsep):
+    path = path.strip('"')
+    mallet = os.path.join(path, 'mallet')
+    if os.path.isfile(mallet) and os.access(mallet, os.X_OK):
+        has_mallet = True
+if not has_mallet:
+    print "you must install Mallet and make it available in your path"
+    sys.exit(1)
 
 setup(
         name = 'diagnidnif',

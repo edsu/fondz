@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-import 
+import diagnidnif
 
 class TopicTest(TestCase):
     
     def test_topics(self):
-        topics = mallet()
-        self.assertEqual(topics, ["cheese", "fondue"])
+        topics = diagnidnif.mallet.topics()
+        self.assertEqual(topics, ["foo", "bar"])
 

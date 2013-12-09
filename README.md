@@ -4,7 +4,7 @@ diagnidnif
 diagnidnif, or "finding aid" backwards, is a tool for auto-generating an 
 "archival" description of data found in a [bag](http://en.wikipedia.org/wiki/BagIt), or a series of bags. This description is expressed as static HTML, for 
 viewing offline. The implicit assumption is that we'll be able to read HTML 
-in browsers for some time to come.
+in browsers for some time to come, hopefully right?
 
 While diagnidnif's output is simple, and easy to preserve, it is a wrapper 
 around some hideously complex, but rather useful pieces of software:
