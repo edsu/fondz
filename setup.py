@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 
-import os
+import sys
 
 from setuptools import setup, find_packages
 
-# make sure mallet is available
+from diagnidnif.utils import which
 
-has_mallet = False
-for path in os.environ["PATH"].split(os.pathsep):
-    path = path.strip('"')
-    mallet = os.path.join(path, 'mallet')
-    if os.path.isfile(mallet) and os.access(mallet, os.X_OK):
-        has_mallet = True
-if not has_mallet:
-    print "you must install Mallet and make it available in your path"
+
+if not which('mallet'):
+    print "you must install Mallet and make it available in your PATH"
     sys.exit(1)
+
+if not which('libreoffice'):
+    print "you must install LibreOffice and make it available in your PATH"
+    sys.exit(1)
+
 
 setup(
         name = 'diagnidnif',

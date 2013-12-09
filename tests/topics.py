@@ -1,9 +1,12 @@
+import os
+
 from unittest import TestCase
 
 import diagnidnif
 
-test_data = os.path.join(os.path.dirname(__name__), 'data')
+test_data = os.path.join(os.path.dirname(__file__), 'data')
 keats = os.path.join(test_data, 'keats')
+print "keats=%s" % keats
 
 class TopicTest(TestCase):
     
