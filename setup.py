@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
         name = 'diagnidnif',
@@ -6,6 +6,6 @@ setup(
         url = 'http://github.com/edsu/diagnidnif',
         author = 'Ed Summers',
         author_email = 'ehs@pobox.com',
-        py_modules = ['diagnidnif',],
-        scripts = ['diagnidnif.py'],
+        packages = ['diagnidnif'],
+        scripts = ['scripts/diagnidnif'],
         test_suite = 'tests',)

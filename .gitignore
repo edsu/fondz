@@ -1,2 +1,4 @@
 diagnidnif.egg-info
 *.pyc
+build
+dist
