@@ -46,12 +46,15 @@ WordPerfect document `def.wpd`.
 Install
 -------
 
-These instructions assume you are on ubuntu. You can probably adapt the for other systems.
+These instructions assume you are on Ubuntu. You should be able to adapt them
+for other systems.
 
-* git clone http://github.com/edsu/diagnidnif.git
+* sudo apt-get install libreoffice-dev python-pip
 * wget http://mallet.cs.umass.edu/dist/mallet-2.0.7.tar.gz
 * tar xvfz mallet-2.0.7.tar.gz
-* sudo apt-get install libreoffice-dev
+* sudo mv mallet-2.0.7 /opt
+* add /opt/mallet-2.0.7/bin to your $PATH
+* sudo pip install diagnidnif
 
 License
 -------
