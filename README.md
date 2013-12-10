@@ -1,5 +1,7 @@
-invenstory ![travis-ci status](https://travis-ci.org/edsu/invenstory.png)
+invenstory 
 -----------
+
+[![travis-ci status](https://travis-ci.org/edsu/invenstory.png)](http://travis-ci.org/edsu/invenstory)
 
 invenstory is a tool for auto-generating an "archival" description for born
 digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series 
