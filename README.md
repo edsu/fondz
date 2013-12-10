@@ -1,4 +1,4 @@
-invenstory
+invenstory ![travis-ci status](https://travis-ci.org/edsu/invenstory.png)
 -----------
 
 invenstory is a tool for auto-generating an "archival" description of data 
@@ -60,8 +60,6 @@ that aren't available in the last release (v2.0.7):
 * cd mallet ; ant ; cd .. ; sudo mv mallet /opt
 * add /opt/mallet/bin to your $PATH
 * sudo pip install invenstory
-
-!(travis-ci status)[https://travis-ci.org/edsu/invenstory.png]
 
 License
 -------
