@@ -45,6 +45,9 @@ WordPerfect document `def.wpd`.
         ├── 1 -> /path/to/a/bag
         └── 2 -> /path/to/another/bag
 
+Once invenstory has run you should be able to open `index.html` in your 
+browser and browse the content.
+
 Install
 -------
 
