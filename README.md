@@ -9,10 +9,11 @@ in browsers for some time to come (hopefully), so it is a logical preservation
 format. 
 
 While invenstory's output is simple, and easy to preserve, it is generated
-using some hideously complex, but rather useful pieces of software:
+using some hideously complex, but nevertheless, rather useful pieces of 
+software:
 
-* libreoffice for converting various document formats
-* mallet for creating topic models of textual content
+* [libreoffice](http://www.libreoffice.org/) for converting various document formats to text and html
+* [mallet](http://mallet.cs.umass.edu/) for creating topic models of textual content
 
 As better opensource tools for converting documents and summarizing their 
 contents become available they can be swapped out for the ones we're using 
