@@ -4,7 +4,7 @@ import sys
 
 from setuptools import setup, find_packages
 
-from diagnidnif.utils import which
+from inventstory.utils import which
 
 
 if not which('mallet'):
@@ -17,11 +17,11 @@ if not which('libreoffice'):
 
 
 setup(
-        name = 'diagnidnif',
+        name = 'inventstory',
         version = '0.0.1',
-        url = 'http://github.com/edsu/diagnidnif',
+        url = 'http://github.com/edsu/inventstory',
         author = 'Ed Summers',
         author_email = 'ehs@pobox.com',
-        packages = ['diagnidnif'],
-        scripts = ['scripts/diagnidnif'],
+        packages = ['inventstory'],
+        scripts = ['scripts/inventstory'],
         test_suite = 'tests',)
