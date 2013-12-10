@@ -59,7 +59,7 @@ that aren't available in the last release (v2.0.7):
 * hg clone http://hg-iesl.cs.umass.edu/hg/mallet
 * cd mallet ; ant ; cd .. ; sudo mv mallet /opt
 * add /opt/mallet/bin to your $PATH
-* sudo pip install diagnidnif
+* sudo pip install invenstory
 
 License
 -------

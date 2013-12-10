@@ -23,5 +23,5 @@ setup(
         author = 'Ed Summers',
         author_email = 'ehs@pobox.com',
         packages = ['invenstory'],
-        scripts = ['scripts/inventstory'],
+        scripts = ['scripts/invenstory'],
         test_suite = 'tests',)
