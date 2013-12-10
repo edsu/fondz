@@ -1,21 +1,25 @@
 invenstory ![travis-ci status](https://travis-ci.org/edsu/invenstory.png)
 -----------
 
-invenstory is a tool for auto-generating an "archival" description of data 
-found in a [bag](http://en.wikipedia.org/wiki/BagIt), or series of bags. This 
-description is expressed as static HTML, for viewing in both online and offline
-mode. The assumption is that we'll be able to read HTML in browsers for some 
-time to come, so it is a logical preservation format.
+invenstory is a tool for auto-generating an "archival" description for born
+digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series 
+of bags. This description is expressed as static HTML, for viewing in both 
+online and offline mode. The assumption is that we'll be able to read HTML 
+in browsers for some time to come (hopefully), so it is a logical preservation 
+format. 
 
-While invenstory's output is simple, and easy to preserve, it is a wrapper 
-around some hideously complex, but rather useful pieces of software:
+While invenstory's output is simple, and easy to preserve, it is generated
+using some hideously complex, but rather useful pieces of software:
 
 * libreoffice for converting various document formats
 * mallet for creating topic models of textual content
 
 As better opensource tools for converting documents and summarizing their 
-contents come on the scene they can be swapped out for the ones we're using 
+contents become available they can be swapped out for the ones we're using 
 now.
+
+Thanks go to Twitter and Facebook for their HTML based archive packages which
+were an inspiration for invenstory.
 
 Example
 -------
