@@ -61,6 +61,8 @@ that aren't available in the last release (v2.0.7):
 * add /opt/mallet/bin to your $PATH
 * sudo pip install invenstory
 
+!(travis-ci status)[https://travis-ci.org/edsu/invenstory.png]
+
 License
 -------
 
