@@ -2,7 +2,7 @@ import shutil
 import tempfile
 from os.path import join, abspath
 
-from inventstory.utils import which, run
+from utils import which, run
 
 mallet = which('mallet')
 

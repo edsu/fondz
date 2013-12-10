@@ -1,4 +1,5 @@
-inventstory.egg-info
+invenstory.egg-info
 *.pyc
 build
 dist
+*.log
