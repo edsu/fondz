@@ -3,6 +3,7 @@ language:
 python:
 - 2.7
 install:
+- sudo apt-get update
 - sudo apt-get install libreoffice-dev python-pip mercurial default-jdk ant
 - hg clone http://hg-iesl.cs.umass.edu/hg/mallet
 - cd mallet ; ant ; cd ..
