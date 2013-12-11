@@ -47,7 +47,7 @@ WordPerfect document `def.wpd`.
     │           └── def.txt
     ├── index.html
     ├── js
-    │   └── topics.js
+    │   └── topics.json
     └── originals
         ├── 1 -> /path/to/a/bag
         └── 2 -> /path/to/another/bag
@@ -67,6 +67,17 @@ that aren't available in the last release (v2.0.7):
 * cd mallet ; ant ; cd .. ; sudo mv mallet /opt
 * add /opt/mallet/bin to your $PATH
 * sudo pip install invenstory
+
+Ideas
+-----
+
+* list of bags and bag metadata
+* inventory of files
+* file format report
+* topic models for textual content
+* convert document formats to HTML/pdf for viewing
+* unpack mbox files into messages that can be topic modeled and displayed
+* provide gallery views of extracted images, try to extract image metadata
 
 License
 -------
