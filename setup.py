@@ -4,7 +4,7 @@ import sys
 
 from setuptools import setup, find_packages
 
-from invenstory.utils import which
+from fonz.utils import which
 
 
 if not which('mallet'):
@@ -17,11 +17,11 @@ if not which('libreoffice'):
 
 
 setup(
-        name = 'invenstory',
+        name = 'fonz',
         version = '0.0.1',
-        url = 'http://github.com/edsu/invenstory',
+        url = 'http://github.com/edsu/fonz',
         author = 'Ed Summers',
         author_email = 'ehs@pobox.com',
-        packages = ['invenstory'],
-        scripts = ['scripts/invenstory'],
+        packages = ['fonz'],
+        scripts = ['scripts/fonz'],
         test_suite = 'tests',)
