@@ -36,12 +36,12 @@ WordPerfect document `def.wpd`.
     example/
     ├── css
     │   └── style.css
-    └── derivatives
-        └── html
-            ├── 1
-            │   └── abc.html
-            └── 2
-                └── def.html
+    ├── derivatives
+    │   └── html
+    │       ├── 1
+    │       │   └── abc.html
+    │       └── 2
+    │           └── def.html
     ├── index.html
     ├── js
     │   └── topics.json
