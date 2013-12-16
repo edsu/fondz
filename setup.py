@@ -4,7 +4,7 @@ import sys
 
 from setuptools import setup, find_packages
 
-from fonz.utils import which
+from fondz.utils import which
 
 
 if not which('mallet'):
@@ -17,11 +17,11 @@ if not which('libreoffice'):
 
 
 setup(
-        name = 'fonz',
+        name = 'fondz',
         version = '0.0.1',
-        url = 'http://github.com/edsu/fonz',
+        url = 'http://github.com/edsu/fondz',
         author = 'Ed Summers',
         author_email = 'ehs@pobox.com',
-        packages = ['fonz'],
-        scripts = ['scripts/fonz'],
+        packages = ['fondz'],
+        scripts = ['scripts/fondz'],
         test_suite = 'tests',)

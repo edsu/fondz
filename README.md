@@ -1,16 +1,16 @@
-fonz 
------------
+fondz 
+-----
 
-[![travis-ci status](https://travis-ci.org/edsu/fonz.png)](http://travis-ci.org/edsu/fonz)
+[![travis-ci status](https://travis-ci.org/edsu/fondz.png)](http://travis-ci.org/edsu/fondz)
 
-fonz is a tool for auto-generating an "archival description" for born
+fondz is a tool for auto-generating an "archival description" for born
 digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series 
 of bags. This description is expressed as static HTML, for viewing in both 
 online and offline mode. The assumption is that we'll be able to read HTML 
 in browsers for some time to come (hopefully), so it is a logical preservation 
 format. 
 
-While fonz's output is simple, and easy to preserve, it is generated
+While fondz's output is simple, and easy to preserve, it is generated
 using some hideously complex, but nevertheless, rather useful pieces of 
 software:
 
@@ -22,7 +22,7 @@ contents become available they can be swapped out for the ones we're using
 now.
 
 Thanks go to Twitter and Facebook for their HTML based archive packages which
-were an inspiration for fonz.
+were an inspiration for fondz.
 
 Example
 -------
@@ -31,7 +31,7 @@ Here's an example for generating a finding aid for two bags, the first bag
 which contains a Word document `abc.doc`, and the second which contains a 
 WordPerfect document `def.wpd`.
 
-    % fonz example /path/to/a/bag /path/to/another/bag
+    % fondz example /path/to/a/bag /path/to/another/bag
     % tree example/
     example/
     ├── css
@@ -49,7 +49,7 @@ WordPerfect document `def.wpd`.
         ├── 1 -> /path/to/a/bag
         └── 2 -> /path/to/another/bag
 
-Once fonz has run you should be able to open `index.html` in your 
+Once fondz has run you should be able to open `index.html` in your 
 browser and browse the content.
 
 Install
@@ -63,7 +63,7 @@ that aren't available in the last release (v2.0.7):
 * hg clone http://hg-iesl.cs.umass.edu/hg/mallet
 * cd mallet ; ant ; cd .. ; sudo mv mallet /opt
 * add /opt/mallet/bin to your $PATH
-* sudo pip install fonz
+* sudo pip install fondz
 
 Ideas
 -----
@@ -76,7 +76,7 @@ Ideas
 * convert document formats to HTML/pdf for viewing
 * unpack mbox files into messages that can be topic modeled and displayed
 * provide gallery views of extracted images, try to extract image metadata
-* a tool that can summarize a collection of fonz descriptions
+* a tool that can summarize a collection of fondz descriptions
 
 License
 -------

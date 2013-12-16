@@ -3,7 +3,7 @@ import json
 
 from unittest import TestCase
 
-import fonz
+from fondz.topics import topics
 
 test_data = os.path.join(os.path.dirname(__file__), 'data')
 keats = os.path.join(test_data, 'keats')
@@ -11,7 +11,7 @@ keats = os.path.join(test_data, 'keats')
 class TopicTest(TestCase):
     
     def test_topics(self):
-        topics = fonz.mallet.topics(keats)
-        self.assertEqual(len(topics), 10)
-        self.assertEqual(len(topics[0]['words']), 15)
+        t = topics(keats)
+        self.assertEqual(len(t), 10)
+        self.assertEqual(len(t[0]['words']), 15)
 
