@@ -1,5 +1,6 @@
-invenstory.egg-info
+fondz.egg-info
 *.pyc
 build
 dist
 *.log
+mallet
