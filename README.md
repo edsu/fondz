@@ -3,7 +3,7 @@ fonz
 
 [![travis-ci status](https://travis-ci.org/edsu/fonz.png)](http://travis-ci.org/edsu/fonz)
 
-fonz is a tool for auto-generating an "archival" description for born
+fonz is a tool for auto-generating an "archival description" for born
 digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series 
 of bags. This description is expressed as static HTML, for viewing in both 
 online and offline mode. The assumption is that we'll be able to read HTML 
