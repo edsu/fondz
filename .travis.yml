@@ -10,5 +10,5 @@ install:
 - export PATH=mallet/bin:$PATH
 script:
 - python setup.py test 
-
-
+after_failure:
+- cat test.log
