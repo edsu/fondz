@@ -7,7 +7,6 @@ install:
 - sudo apt-get install libreoffice python-pip mercurial default-jdk ant
 - hg clone http://hg-iesl.cs.umass.edu/hg/mallet
 - cd mallet ; ant ; cd ..
-- echo `libreoffice --version`
 - export PATH=mallet/bin:$PATH
 script:
 - python setup.py test 
