@@ -9,6 +9,7 @@ install:
 - hg clone http://hg-iesl.cs.umass.edu/hg/mallet
 - cd mallet ; ant ; cd ..
 - export PATH=mallet/bin:$PATH
+- pip install -r requirements.txt
 script:
 - python setup.py test 
 after_failure:
