@@ -70,16 +70,27 @@ that aren't available in the last release (v2.0.7):
 Ideas
 -----
 
-* list of bags and bag metadata
-* inventory of files
-* file format report
-* extract image metadata with exiftool
+These are ideas that seem theoretically doable. If you have similar
+ideas to add, please send me a pull request for your changes to the README.md, 
+or open an issue here on Github.
+
+* list of bags, their contents, checksums and bag-info.txt metadata
+* file format report, including a summary for the entire collection
 * pii report w/ bulk extractor?
 * topic models for textual content
 * convert document formats to HTML/pdf for viewing
-* unpack mbox files into messages that can be topic modeled and displayed
-* provide gallery views of extracted images, try to extract image metadata
-* a tool that can summarize a collection of fondz descriptions
+* extract image metadata with exiftool
+* provide gallery views of extracted images
+* zoomable interface for large images using leaflet + generated dzi files?
+  e.g. http://content.wdl.org/1/service/dzi/1/1.dzi
+* ocr image files with tesseract, and save off hocr output for topic modeling
+  etc.
+* unpack mbox files into messages that can be topic modeled and displayed, 
+  network graphs of email correspondence?
+* send html output through WikipediaMiner to try to get links to Wikipedia
+  summarize entities found, get metadata for them from dbpedia, freebase, etc.
+* do named entity recognition with Stanford NER, or something similar.
+* a tool that can summarize/index a collection of fondz descriptions
 
 License
 -------
