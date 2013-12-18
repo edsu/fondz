@@ -15,6 +15,10 @@ if not which('libreoffice'):
     print "you must install LibreOffice and make it available in your PATH"
     sys.exit(1)
 
+if not which('exiftool'):
+    print "you must install exiftool and make it available in your PATH"
+    sys.exit(1)
+
 
 setup(
         name = 'fondz',

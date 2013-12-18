@@ -1,0 +1,8 @@
+1014dc9135e52614958bc9e59d892c47  data/keats-on-497.txt
+bf25bf2084a1f262ab9116599b6455c2  data/keats-ode-494.txt
+2aadd8a10a5909d4627a72feedc256fb  data/keats-on-499.txt
+0030a10a75bfb104a63e2e93209a411b  data/keats-on-500.txt
+4bc3a10e53d2071c4f337a29fa1f9fd0  data/keats-ode-496.txt
+ac1e4e546e70ce4ad0f770195ad035f2  data/keats-ode-495.txt
+242c0afa399336978226fc4dcd3bb47c  data/keats-ode-493.txt
+9346db04b185d482927a6cf7f6917f9f  data/keats-on-498.txt

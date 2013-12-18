@@ -4,7 +4,8 @@ python:
 - 2.7
 install:
 - sudo apt-get update
-- sudo apt-get install libreoffice python-pip mercurial default-jdk ant
+- sudo apt-get install libreoffice python-pip mercurial default-jdk ant 
+  libimage-exiftool-perl
 - hg clone http://hg-iesl.cs.umass.edu/hg/mallet
 - cd mallet ; ant ; cd ..
 - export PATH=mallet/bin:$PATH

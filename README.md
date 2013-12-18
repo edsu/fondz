@@ -5,10 +5,10 @@ fondz
 
 fondz is a tool for auto-generating an "archival description" for born
 digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series 
-of bags. This description is expressed as static HTML, for viewing in both 
-online and offline mode. The assumption is that we'll be able to read HTML 
-in browsers for some time to come (hopefully), so it is a logical preservation 
-format. 
+of bags. This description is expressed as static HTML, suitable for viewing in 
+both online and offline mode. The assumption is that we'll be able to read HTML 
+in browsers for some time to come (hopefully), so it is a logical long term
+preservation format.
 
 While fondz's output is simple, and easy to preserve, it is generated
 using some hideously complex, but nevertheless, rather useful pieces of 
@@ -60,6 +60,7 @@ for other systems. We need to build the latest Mallet because it has some fixes
 that aren't available in the last release (v2.0.7):
 
 * sudo apt-get install libreoffice-dev python-pip mercurial default-jdk ant
+  libimage-exiftool-perl
 * hg clone http://hg-iesl.cs.umass.edu/hg/mallet
 * cd mallet ; ant ; cd .. ; sudo mv mallet /opt
 * add /opt/mallet/bin to your $PATH

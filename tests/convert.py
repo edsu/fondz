@@ -4,7 +4,7 @@ from unittest import TestCase
 
 from fondz.convert import convert_dir, convert_to_html
 
-test_data = os.path.join(os.path.dirname(__file__), 'data', 'convert')
+test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag1', 'data')
 
 class ConvertTest(TestCase):
 

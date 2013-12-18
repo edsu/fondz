@@ -1,0 +1,3 @@
+92d33361346d0e6beffb7821d10b22a4  data/wordperfect.wp
+baf525bef9a80cd6aa0743e5720eb0fd  data/word.doc
+b7b9d6ed1799614e9643da81b054de0b  data/subdir/word.docx
