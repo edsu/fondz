@@ -21,7 +21,8 @@ As better opensource tools for converting documents and summarizing their
 contents become available they can be swapped out for the ones we're using 
 now.
 
-Thanks go to Twitter and Facebook for their HTML based archive packages which
+Thanks go to Twitter and Facebook for their HTML based archive packages, and
+to [Jekyll](http://jekyllrb.com/) and other static site generators, which 
 were an inspiration for fondz.
 
 Example
