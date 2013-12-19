@@ -9,7 +9,7 @@ is_travis = os.environ.get("TRAVIS") == "true"
 # probably because of something weird in the environment and libmagic1 
 # so we don't run these tests on there
 
-@unittest.skipIf(is_travis)
+@unittest.skipIf(is_travis, "format identification doesn't work on travis")
 class FileFormat(unittest.TestCase):
 
     def test_identify_dir(self):
