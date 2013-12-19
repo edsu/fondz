@@ -1,5 +1,6 @@
 import os
 import magic
+import logging
 
 mediatype = magic.Magic(mime=True)
 description = magic.Magic()
@@ -12,6 +13,7 @@ def identify_dir(src_dir):
         for filename in filenames:
             path = os.path.join(dirpath, filename)
             rel_path = os.path.relpath(path, parent_dir)
+            logging.info("format identification for %s", path)
             f_mediatype = mediatype.from_file(path)
             f_desc = description.from_file(path)
             formats.append({
