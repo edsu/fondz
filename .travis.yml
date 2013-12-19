@@ -14,3 +14,4 @@ script:
 - python setup.py test 
 after_failure:
 - cat test.log
+- cat /etc/mime.types
