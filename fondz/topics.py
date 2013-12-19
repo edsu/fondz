@@ -22,13 +22,13 @@ def topics(text_dir,
     topic_keys_file = join(tmp_dir, 'topic_keys.txt')
     xml_topic_report = join(tmp_dir, 'report.xml')
 
-    run([mallet, 'import-dir', 
+    rc, stdout = run([mallet, 'import-dir', 
         '--input', text_dir, 
         '--output', data_file, 
         '--keep-sequence',  
         '--remove-stopwords'])
 
-    run([mallet, 'train-topics',
+    rc, stdout = run([mallet, 'train-topics',
         '--input', data_file,
         '--output-state', state_file, 
         '--num-topics', str(num_topics),

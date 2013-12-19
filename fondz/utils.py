@@ -15,13 +15,13 @@ def which(program):
 
 def run(cmd):
     logging.info("starting command %s", cmd)
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    for line in p.stdout:
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    for line in p.stderr:
         line = line.strip()
-        logging.info(line)
+        logging.error(line)
     p.wait()
     logging.info("finished command, exit code %s", p.returncode)
-    return p.returncode
+    return p.returncode, p.stdout
 
 
 tmpl_dir = os.path.join(os.path.dirname(__file__), 'templates')

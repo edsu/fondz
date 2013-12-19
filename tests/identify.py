@@ -6,6 +6,11 @@ test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag1', 'data')
 
 class FileFormat(unittest.TestCase):
 
+    def test_mediatype(self):
+        f = os.path.join(test_data, 'word.doc')
+        mt = fondz.identify.mediatype(f)
+        self.assertEqual(mt, 'application/msword')
+
     def test_identify_dir(self):
         formats = fondz.identify.identify_dir(test_data)
         self.assertEqual(len(formats), 4)

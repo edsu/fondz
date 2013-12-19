@@ -38,7 +38,7 @@ def convert_to_html(path):
         '--outdir', tmp_dir, 
         path
     ]
-    rc = run(cmd)
+    rc, stdout = run(cmd)
     if rc != 0:
         logging.error("convert to html returned non zero: %i", rc)
         return None
