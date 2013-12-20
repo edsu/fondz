@@ -14,10 +14,10 @@ While fondz's output is simple, and easy to preserve, it is generated
 using some hideously complex, but nevertheless, rather useful pieces of 
 opensource software:
 
-* [libreoffice](http://www.libreoffice.org/) for converting various document formats to text and html
-* [mallet](http://mallet.cs.umass.edu/) for creating topic models of textual content
-* [file/libmagic](http://www.darwinsys.com/file/) the venerable unix file identification utility
-* [exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for extracting image metadata
+* [libreoffice](http://www.libreoffice.org/) - for converting various document formats to html
+* [mallet](http://mallet.cs.umass.edu/) - for creating topic models of textual content
+* [file/libmagic](http://www.darwinsys.com/file/) - the venerable unix file identification utility
+* [exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) - for extracting image metadata
 
 As better opensource tools for converting documents and summarizing their 
 contents become available they can be swapped out for the ones we're using 
