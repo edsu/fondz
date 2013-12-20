@@ -16,6 +16,7 @@ opensource software:
 
 * [libreoffice](http://www.libreoffice.org/) for converting various document formats to text and html
 * [mallet](http://mallet.cs.umass.edu/) for creating topic models of textual content
+* [file/libmagic](http://www.darwinsys.com/file/) the venerable unix file identification utility
 * [exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) for extracting image metadata
 
 As better opensource tools for converting documents and summarizing their 
