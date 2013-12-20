@@ -1,4 +1,5 @@
 import os
+import json
 import jinja2
 import logging
 import subprocess
@@ -24,12 +25,18 @@ def run(cmd):
     return p.returncode, p.stdout
 
 
+def write_json(d, filename):
+    open(filename, "w").write(json.dumps(d, indent=2))
+
+
 tmpl_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja = jinja2.Environment(loader=jinja2.PackageLoader('fondz', 'templates'))
+
 
 def render(template, *args, **kwargs):
     t = jinja.get_template(template)
     return t.render(*args, **kwargs)
+
 
 def render_to(template, html_file, *args, **kwargs):
     html = render(template, *args, **kwargs)
