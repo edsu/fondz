@@ -3,13 +3,8 @@ import fondz
 import unittest
 
 test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag1', 'data')
-is_travis = os.environ.get("TRAVIS") == "true"
 
-# unfortunately format identification tests are unprecitable on travis-ci
-# probably because of something weird in the environment and libmagic1 
-# so we don't run these tests on there
 
-@unittest.skipIf(is_travis, "format identification doesn't work on travis")
 class FileFormat(unittest.TestCase):
 
     def test_identify_dir(self):
