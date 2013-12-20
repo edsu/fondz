@@ -14,4 +14,3 @@ script:
 - python setup.py test 
 after_failure:
 - cat test.log
-- apt-cache show libmagic1

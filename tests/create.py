@@ -49,15 +49,14 @@ class CreateTests(unittest.TestCase):
         # topic models json is there?
         topics_file = join(d, "js", "topics.json")
         self.assertTrue(isfile(topics_file))
-        self.assertTrue(json.loads(topics_file))
 
         # file format json is there?
         formats_file = join(d, "js", "formats.json")
         self.assertTrue(isfile(formats_file))
-        self.assertTrue(json.loads(formats_file))
 
         # index there?
         index = join(d, "index.html")
         self.assertTrue(isfile(index))
         html = open(index).read()
         self.assertTrue('<!doctype html>' in html)
+
