@@ -26,6 +26,7 @@ setup(
         url = 'http://github.com/edsu/fondz',
         author = 'Ed Summers',
         author_email = 'ehs@pobox.com',
-        packages = ['fondz'],
+        packages = find_packages(),
         scripts = ['scripts/fondz'],
+        package_data = {'fondz': ['templates/*.html']},
         test_suite = 'tests',)

@@ -26,13 +26,14 @@ def create(fondz_dir, *bags, **kwargs):
     topic_model = topics(join(fondz_dir, "derivatives"))
     write_json(topic_model, join(fondz_dir, "js", "topics.json"))
 
+    # ideas:
     # ocr?
     # thumbnails?
     # dzi files?
     # move/copy log file into fondz_dir?
 
     # write out the description
-    write_index(fondz_dir)
+    write_index(fondz_dir, topic_model=topic_model, formats=formats)
 
 
 def init(fondz_dir):
@@ -52,9 +53,9 @@ def add_bag(fondz_dir, bag_dir):
     os.symlink(src, link_name)
 
 
-def write_index(fondz_dir):
+def write_index(fondz_dir, **kwargs):
     index_file = os.path.join(fondz_dir, "index.html")
-    html = render_to('index.html', index_file)
+    html = render_to('index.html', index_file, **kwargs)
 
 
 def mkdir(*parts):
