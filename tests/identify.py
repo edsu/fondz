@@ -36,3 +36,13 @@ class FileFormat(unittest.TestCase):
                 self.assertEqual(f['encoding'], 'application/mswordbinary')
             else:
                 self.fail("unexpected path: %s" % f['path'])
+
+
+    def test_symlink(self):
+        link_name = 'test__symlink'
+        if os.path.islink(link_name):
+            os.remove(link_name)
+        os.symlink(test_data, link_name)
+        formats = fondz.identify.identify_dir(link_name)
+        self.assertEqual(len(formats), 4)
+        os.remove(link_name)

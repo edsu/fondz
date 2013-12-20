@@ -29,6 +29,7 @@ def create(fondz_dir, *bags, **kwargs):
     # ocr?
     # thumbnails?
     # dzi files?
+    # move/copy log file into fondz_dir?
 
     # write out the description
     write_index(fondz_dir)

@@ -11,10 +11,12 @@ encoding = magic.Magic(mime_encoding=True)
 
 
 def identify_dir(src_dir):
+    logging.info("starting format identification for %s", src_dir)
     src_dir = os.path.abspath(src_dir)
+
     parent_dir = os.path.dirname(src_dir)
     formats = []
-    for dirpath, dirnames, filenames in os.walk(src_dir):
+    for dirpath, dirnames, filenames in os.walk(src_dir, followlinks=True):
         for filename in filenames:
             path = os.path.join(dirpath, filename)
             rel_path = os.path.relpath(path, parent_dir)
