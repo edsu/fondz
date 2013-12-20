@@ -18,13 +18,17 @@ def create(fondz_dir, *bags, **kwargs):
     convert_dir(join(fondz_dir, "originals"), 
                 join(fondz_dir, "derivatives"))
 
+    # identify formats
+    formats = identify_dir(join(fondz_dir, "originals"))
+    write_json(formats, join(fondz_dir, "js", "formats.json"))
+
     # topic model on the html
     topic_model = topics(join(fondz_dir, "derivatives"))
     write_json(topic_model, join(fondz_dir, "js", "topics.json"))
 
-    # identify formats
-    formats = identify_dir(fondz_dir, "originals")
-    write_json(formats, join(fondz_dir, "js", "formats.json"))
+    # ocr?
+    # thumbnails?
+    # dzi files?
 
     # write out the description
     write_index(fondz_dir)
