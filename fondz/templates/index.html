@@ -6,6 +6,35 @@
 </head>
 
 <body>
+
+<h2>Topics</h2>
+<table id="topics">
+  <tr>
+    <th>Topics</th>
+    <th>Files</th>
+  </tr>
+  {% for topic in topics %}
+  <tr>
+    <td>{% for word in topic.words %}{{ word }} {% endfor %}</td>
+    <td>{% for file in topic.files %}{{ file.0 }} {% endfor %}</td>
+  </tr>
+{% endfor %}
+</table>
+
+<h2>Media-type Summary</h2>
+<table id="mediatypes">
+  <tr>
+  <th>MediaType</th>
+  <th>Files</th>
+  </tr>
+  {% for m in mediatypes %}
+  <tr>
+    <td>{{ m.name }}</td>
+    <td>{% for f in m.files %}{{ f }}{% endfor %}</td>
+  </tr>
+  {% endfor %}
+</table>
+
 </body>
 
 </html>

@@ -21,10 +21,24 @@ def identify_dir(src_dir):
             path = os.path.join(dirpath, filename)
             rel_path = os.path.relpath(path, parent_dir)
             logging.info("format identification for %s", path)
-            formats.append({
+            m = {
                 "path": rel_path, 
                 "mediatype": mediatype.from_file(path),
                 "description": description.from_file(path),
                 "encoding": encoding.from_file(path)
-            })
+            }
+            logging.info("got %s", m)
+            formats.append(m)
     return formats
+
+
+def mediatype_summary(formats):
+    counts = {}
+    for f in formats:
+        mediatype = f['mediatype']
+        if mediatype not in counts:
+            counts[mediatype] = []
+        counts[mediatype].append(f['path'])
+    sorted_mediatypes = counts.keys()
+    sorted_mediatypes.sort(lambda a, b: cmp(len(counts[b]), len(counts[a])))
+    return [{'name': m, 'files': counts[m]} for m in sorted_mediatypes]

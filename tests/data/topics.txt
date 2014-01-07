@@ -1,0 +1,17 @@
+#doc name topic proportion ...
+0	file:/home/ubuntu/fondz/x/derivatives/1/keats-ode-493.txt.html	3	0.6870237660619126	8	0.3118622613992502	
+1	file:/home/ubuntu/fondz/x/derivatives/1/keats-ode-496.txt.html	4	0.4713066986887707	7	0.34808391152931567	8	0.18011167653725313	
+2	file:/home/ubuntu/fondz/x/derivatives/1/keats-on-497.txt.html	8	0.7063132515113374	1	0.2921499892834975	
+3	file:/home/ubuntu/fondz/x/derivatives/1/keats-on-500.txt.html	6	0.5181504997760934	8	0.4802208336982263	
+4	file:/home/ubuntu/fondz/x/derivatives/1/keats-ode-495.txt.html	0	0.6339728571559478	8	0.36492567941726495	
+5	file:/home/ubuntu/fondz/x/derivatives/1/keats-on-498.txt.html	8	0.6005913240327613	1	0.39781376094151566	
+6	file:/home/ubuntu/fondz/x/derivatives/1/keats-on-499.txt.html	8	0.5772828071512622	5	0.42097067442535185	
+7	file:/home/ubuntu/fondz/x/derivatives/1/keats-ode-494.txt.html	2	0.783545792389237	8	0.21575002483490766	
+8	file:/home/ubuntu/fondz/x/derivatives/2/keats-ode-493.txt.html	3	0.6584031796657146	8	0.3404828477954482	
+9	file:/home/ubuntu/fondz/x/derivatives/2/keats-ode-496.txt.html	4	0.4651471559143678	7	0.36656253985252446	8	0.1677925909884473	
+10	file:/home/ubuntu/fondz/x/derivatives/2/keats-on-497.txt.html	8	0.6333867073129363	1	0.3468448974322983	
+11	file:/home/ubuntu/fondz/x/derivatives/2/keats-on-500.txt.html	6	0.5014419818181778	8	0.496929351656142	
+12	file:/home/ubuntu/fondz/x/derivatives/2/keats-ode-495.txt.html	0	0.662269496982198	8	0.3366290395910147	
+13	file:/home/ubuntu/fondz/x/derivatives/2/keats-on-498.txt.html	8	0.5722089559480691	1	0.42619612902620785	
+14	file:/home/ubuntu/fondz/x/derivatives/2/keats-on-499.txt.html	8	0.6041405997263383	5	0.3941128818502759	
+15	file:/home/ubuntu/fondz/x/derivatives/2/keats-ode-494.txt.html	2	0.7545286844050886	8	0.2447671328190562	

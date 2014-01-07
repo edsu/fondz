@@ -19,7 +19,7 @@ def run(cmd):
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     for line in p.stderr:
         line = line.strip()
-        logging.error(line)
+        logging.debug(line)
     p.wait()
     logging.info("finished command, exit code %s", p.returncode)
     return p.returncode, p.stdout
@@ -27,6 +27,10 @@ def run(cmd):
 
 def write_json(d, filename):
     open(filename, "w").write(json.dumps(d, indent=2))
+
+
+def read_json(filename):
+    return json.loads(open(filename).read())
 
 
 tmpl_dir = os.path.join(os.path.dirname(__file__), 'templates')

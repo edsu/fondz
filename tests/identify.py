@@ -1,4 +1,5 @@
 import os
+import json
 import fondz
 import unittest
 
@@ -41,3 +42,13 @@ class FileFormat(unittest.TestCase):
         formats = fondz.identify.identify_dir(link_name)
         self.assertEqual(len(formats), 4)
         os.remove(link_name)
+
+
+    def test_summarize(self):
+        filename = os.path.join(os.path.dirname(__file__), 'data', 'formats.json')
+        f = json.loads(open(filename).read())
+        summary = fondz.identify.mediatype_summary(f)
+        self.assertEqual(summary[0]['name'], 'text/plain')
+        self.assertEqual(len(summary[0]['files']), 8)
+
+

@@ -1,10 +1,11 @@
 import os
+import json
+from os.path import join, isdir, abspath
 
-from os.path import join
 from fondz.topics import topics
 from fondz.convert import convert_dir
-from fondz.identify import identify_dir
-from fondz.utils import render_to, write_json
+from fondz.identify import identify_dir, mediatype_summary
+from fondz.utils import render_to, write_json, read_json
 
 
 def create(fondz_dir, *bags, **kwargs):
@@ -32,8 +33,8 @@ def create(fondz_dir, *bags, **kwargs):
     # dzi files?
     # move/copy log file into fondz_dir?
 
-    # write out the description
-    write_index(fondz_dir, topic_model=topic_model, formats=formats)
+    # finally, write out the description
+    write_index(fondz_dir)
 
 
 def init(fondz_dir):
@@ -48,17 +49,22 @@ def add_bag(fondz_dir, bag_dir):
     # TODO: make sure bag_dir is actually a valid bag
     current_bags = os.listdir(join(fondz_dir, "originals"))
     next_orig = str(len(current_bags) + 1)
-    src = os.path.abspath(join(bag_dir, "data"))
+    src = abspath(join(bag_dir, "data"))
     link_name = join(fondz_dir, "originals", next_orig)
+    logging.info("symlinking %s to %s", src, link_name)
     os.symlink(src, link_name)
 
 
-def write_index(fondz_dir, **kwargs):
-    index_file = os.path.join(fondz_dir, "index.html")
-    html = render_to('index.html', index_file, **kwargs)
+def write_index(fondz_dir):
+    index_file = join(fondz_dir, "index.html")
+    topics = read_json(join(fondz_dir, "js", "topics.json"))
+    formats = read_json(join(fondz_dir, "js", "formats.json"))
+    mediatypes = mediatype_summary(formats)
+
+    render_to('index.html', index_file, topics=topics, mediatypes=mediatypes)
 
 
 def mkdir(*parts):
     path = join(*parts)
-    if not os.path.isdir(path):
+    if not isdir(path):
         os.makedirs(path)

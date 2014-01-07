@@ -1,0 +1,50 @@
+[
+  {
+    "path": "originals/1/keats-on-497.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }, 
+  {
+    "path": "originals/1/keats-ode-494.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }, 
+  {
+    "path": "originals/1/keats-on-499.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }, 
+  {
+    "path": "originals/1/keats-on-500.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }, 
+  {
+    "path": "originals/1/keats-ode-496.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }, 
+  {
+    "path": "originals/1/keats-ode-495.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }, 
+  {
+    "path": "originals/1/keats-ode-493.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }, 
+  {
+    "path": "originals/1/keats-on-498.txt", 
+    "encoding": "us-ascii", 
+    "mediatype": "text/plain", 
+    "description": "ASCII text"
+  }
+]

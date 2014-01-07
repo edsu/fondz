@@ -14,6 +14,9 @@ def topics(text_dir,
            doc_topics_threshold='0.1', 
            optimize_interval=10):
 
+    if not mallet:
+        raise Exception("mallet not found on PATH")
+
     text_dir = abspath(text_dir)
     tmp_dir = tempfile.mkdtemp()
     data_file = join(tmp_dir, 'data.mallet')
@@ -26,6 +29,7 @@ def topics(text_dir,
         '--input', text_dir, 
         '--output', data_file, 
         '--keep-sequence',  
+        '--skip-html',
         '--remove-stopwords'])
 
     rc, stdout = run([mallet, 'train-topics',
@@ -50,31 +54,37 @@ def summarize(text_dir, topics_file, topic_keys_file):
     results = []
 
     # get the list of topics, and their scores
-    for topic_key in get_tsv(topic_keys_file):
+    for row in get_tsv(topic_keys_file):
+        # need at least three columns: topic #, score and words
+        if len(row) < 3: 
+            continue
         t = {
-            "words": topic_key[2].split(" "), 
-            "score": float(topic_key[1]), 
+            "words": row[2].split(" "), 
+            "score": float(row[1]), 
             "files": []
         }
         results.append(t)
 
     # get the files and their associated topics
-    for topic in get_tsv(topics_file):
+    for row in get_tsv(topics_file):
         # ignore header
-        if len(topic) == 1: continue
+        if len(row) == 1: continue
 
-        doc_num = topic.pop(0)
-        doc = topic.pop(0)
+        doc_num = row.pop(0)
+        doc = row.pop(0)
         doc = doc.replace('file:' + text_dir + '/', '') # make relative path
         files = []
-        while len(topic) > 0:
-            topic_num = int(topic.pop(0))
-            proportion = float(topic.pop(0))
+        while len(row) > 0:
+            topic_num = int(row.pop(0))
+            proportion = float(row.pop(0))
             results[topic_num]['files'].append((doc, proportion))
 
     # sort the list of files for each topic descending by their proportion
     for t in results:
         t['files'].sort(lambda a, b: cmp(b[1], a[1]))
+
+    # only include topics that are associated with files
+    results = filter(lambda t: len(t['files']) > 0, results)
 
     return results
         
