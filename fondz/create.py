@@ -1,5 +1,6 @@
 import os
 import json
+import logging
 from os.path import join, isdir, abspath
 
 from fondz.topics import topics
