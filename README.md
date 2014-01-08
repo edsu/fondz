@@ -76,11 +76,8 @@ ideas to add, please send me a pull request for your changes to the README.md,
 or open an issue here on Github.
 
 * list of bags, their contents, checksums and bag-info.txt metadata
-* file format report, including a summary for the entire collection
 * pii report w/ bulk extractor?
-* <strike>topic models for textual content</strike>
 * search using something like lunr.js?
-* <strike>convert document formats to HTML/pdf for viewing</strike>
 * extract image metadata with exiftool
 * provide gallery views of extracted images
 * zoomable interface for large images using leaflet + generated dzi files?
@@ -89,8 +86,10 @@ or open an issue here on Github.
   etc.
 * unpack mbox files into messages that can be topic modeled and displayed, 
   network graphs of email correspondence?
-* send html output through WikipediaMiner to try to get links to Wikipedia
-  summarize entities found, get metadata for them from dbpedia, freebase, etc.
+* unpack zip, tar balls prior to other processing
+* optionally send html output through WikipediaMiner to try to get links to 
+  Wikipedia summarize entities found, get metadata for them from dbpedia, 
+  freebase, etc.
 * do named entity recognition with Stanford NER, or something similar.
 * a tool that can summarize/index a collection of fondz descriptions
 * libreoffice/unoconv pool/queue for converting lots of documents in parallel
