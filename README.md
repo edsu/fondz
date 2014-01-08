@@ -78,8 +78,9 @@ or open an issue here on Github.
 * list of bags, their contents, checksums and bag-info.txt metadata
 * file format report, including a summary for the entire collection
 * pii report w/ bulk extractor?
-* topic models for textual content
-* convert document formats to HTML/pdf for viewing
+* <strike>topic models for textual content</strike>
+* search using something like lunr.js?
+* <strike>convert document formats to HTML/pdf for viewing</strike>
 * extract image metadata with exiftool
 * provide gallery views of extracted images
 * zoomable interface for large images using leaflet + generated dzi files?
