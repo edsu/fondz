@@ -3,25 +3,23 @@ fondz
 
 [![travis-ci status](https://travis-ci.org/edsu/fondz.png)](http://travis-ci.org/edsu/fondz)
 
-fondz is a tool for auto-generating an "archival description" for born
-digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series 
-of bags. This description is expressed as static HTML, suitable for viewing in 
-both online and offline mode. The assumption is that we'll be able to read HTML 
-in browsers for some time to come (hopefully), so it is a logical long term
-preservation format.
+fondz is a command line tool for auto-generating an "archival description" for a set of born digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series of bags. The name fondz was borrowed from a [humorous](http://curatememe.tumblr.com/post/28097866834/respect-de-fondz-taking-into-consideration-the) take on the archival principle of [provenance](http://www2.archivists.org/glossary/terms/p/provenance) or respect de fonds. fondz works best if you point it at a collection of content that has some thematic unity, such as a collection associated with an individual, family or organization.
 
-While fondz's output is simple, and easy to preserve, it is generated
-using some hideously complex, but nevertheless, rather useful pieces of 
-opensource software:
+The description that fondz generates is expressed as HTML, suitable for 
+viewing in both online and offline mode without the need for running software
+other than your Web browser. The HTML also contains structured metadata, so 
+that it can be easily processed by other applications. fondz is largely an
+integration layer for other tools such as:
 
 * [libreoffice](http://www.libreoffice.org/) - for converting various document formats to html
 * [mallet](http://mallet.cs.umass.edu/) - for creating topic models of textual content
+* [fido](https://github.com/openplanets/fido) - for identifying file formats using the [Pronom](http://www.nationalarchives.gov.uk/PRONOM/Default.aspx) registry.
 * [file/libmagic](http://www.darwinsys.com/file/) - the venerable unix file identification utility
 * [exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) - for extracting image metadata
 
 As better opensource tools for converting documents and summarizing their 
-contents become available they can be swapped out for the ones we're using 
-now.
+contents become available they can be swapped out for the ones that are being 
+used now.
 
 Thanks go to Twitter and Facebook for their HTML based archive packages, and
 to [Jekyll](http://jekyllrb.com/) and other static site generators, which 
@@ -71,28 +69,13 @@ that aren't available in the last release (v2.0.7):
 Ideas
 -----
 
+If you've got ideas for things fondz could do, please submit them as
+an enhancement issue at [GitHub](https://github.com/edsu/fondz/issues/new).
+
+
 These are ideas that seem theoretically doable. If you have similar
 ideas to add, please send me a pull request for your changes to the README.md, 
 or open an issue here on Github.
-
-* list of bags, their contents, checksums and bag-info.txt metadata
-* pii report w/ bulk extractor?
-* search using something like lunr.js?
-* extract image metadata with exiftool
-* provide gallery views of extracted images
-* zoomable interface for large images using leaflet + generated dzi files?
-  e.g. http://content.wdl.org/1/service/dzi/1/1.dzi
-* ocr image files with tesseract, and save off hocr output for topic modeling
-  etc.
-* unpack mbox files into messages that can be topic modeled and displayed, 
-  network graphs of email correspondence?
-* unpack zip, tar balls prior to other processing
-* optionally send html output through WikipediaMiner to try to get links to 
-  Wikipedia summarize entities found, get metadata for them from dbpedia, 
-  freebase, etc.
-* do named entity recognition with Stanford NER, or something similar.
-* a tool that can summarize/index a collection of fondz descriptions
-* libreoffice/unoconv pool/queue for converting lots of documents in parallel
 
 Notes
 -----
