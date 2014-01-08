@@ -94,6 +94,17 @@ or open an issue here on Github.
 * do named entity recognition with Stanford NER, or something similar.
 * a tool that can summarize/index a collection of fondz descriptions
 
+Notes
+-----
+
+If you are on OSX and want to convince fondz to use your OpenOffice install put
+a script like this named `libreoffice` in your PATH:
+
+    #!/bin/sh
+
+    cd /Applications/LibreOffice.app/Contents/MacOS/
+    ./soffice $@
+
 License
 -------
 
