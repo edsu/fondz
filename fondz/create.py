@@ -4,8 +4,8 @@ import logging
 from os.path import join, isdir, abspath
 
 from fondz.topics import topics
-from fondz.convert import convert_dir
-from fondz.identify import identify_dir, mediatype_summary
+from fondz.convert import convert
+from fondz.identify import identify, mediatype_summary
 from fondz.utils import render_to, write_json, read_json
 
 
@@ -17,11 +17,10 @@ def create(fondz_dir, *bags, **kwargs):
         add_bag(fondz_dir, bag)
    
     # try to convert what we can to html
-    convert_dir(join(fondz_dir, "originals"), 
-                join(fondz_dir, "derivatives"))
+    convert(fondz_dir)
 
     # identify formats
-    formats = identify_dir(join(fondz_dir, "originals"))
+    formats = identify(fondz_dir)
     write_json(formats, join(fondz_dir, "js", "formats.json"))
 
     # topic model on the html
@@ -50,10 +49,10 @@ def add_bag(fondz_dir, bag_dir):
     # TODO: make sure bag_dir is actually a valid bag
     current_bags = os.listdir(join(fondz_dir, "originals"))
     next_orig = str(len(current_bags) + 1)
-    src = abspath(join(bag_dir, "data"))
     link_name = join(fondz_dir, "originals", next_orig)
-    logging.info("symlinking %s to %s", src, link_name)
-    os.symlink(src, link_name)
+    bag_dir = os.path.abspath(bag_dir)
+    logging.info("symlinking %s to %s", bag_dir, link_name)
+    os.symlink(bag_dir, link_name)
 
 
 def write_index(fondz_dir):

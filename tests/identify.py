@@ -1,6 +1,8 @@
 import os
 import json
 import fondz
+import shutil
+import tempfile
 import unittest
 
 test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag1', 'data')
@@ -8,47 +10,48 @@ test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag1', 'data')
 
 class FileFormat(unittest.TestCase):
 
+    def test_identify(self):
+        fondz_dir = tempfile.mkdtemp()
+        fondz.create.init(fondz_dir)
+
+        bag1 = os.path.join(os.path.dirname(__file__), 'data', 'bag1')
+        fondz.create.add_bag(fondz_dir, bag1)
+
+        bag2 = os.path.join(os.path.dirname(__file__), 'data', 'bag2')
+        fondz.create.add_bag(fondz_dir, bag2)
+
+        results = fondz.identify.identify(fondz_dir)
+        self.assertEqual(len(results), 12)
+
+        # make sure all the paths have been made relative
+        for f in results:
+            self.assertTrue(f['path'].startswith('originals'))
+
+        shutil.rmtree(fondz_dir)
+
     def test_identify_dir(self):
         formats = fondz.identify.identify_dir(test_data)
         self.assertEqual(len(formats), 4)
 
-        # the order of the file formats isn't necessarily determinate
-        # also you'll notice some tests test that a value is one of 
-        # two options. This is to cover tests on OSX where python-magic
-        # results differ in small ways
+        self.assertTrue(os.path.isfile(formats[0]['path']))
+        self.assertEqual(formats[0]['mediatype'], 'image/jpeg')
+        self.assertEqual(formats[0]['name'], 'JPEG File Interchange Format')
+        self.assertEqual(formats[0]['description'], 'JFIF 1.01')
 
-        for f in formats:
-            if f['path'] == 'data/wordperfect.wp':
-                self.assertEqual(f['mediatype'], 'application/octet-stream')
-                self.assertEqual(f['description'], '(Corel/WP)')
-                self.assertTrue(f['encoding'] in ['binary', 'unknown'])
-            elif f['path'] == 'data/newspaper.jpg':
-                self.assertEqual(f['mediatype'], 'image/jpeg')
-                self.assertEqual(f['description'], 'JPEG image data, JFIF standard 1.01')
-                # on os x the encoding is uknown for some reason
-                self.assertTrue(f['encoding'] in ['binary', 'unknown'])
-            elif f['path'] == 'data/subdir/word.docx':
-                self.assertTrue(f['mediatype'] in ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.documentapplication/zip'])
-                self.assertEqual(f['description'], 'Microsoft Word 2007+')
-                self.assertTrue(f['encoding'] in ['binary', 'unknown'])
-            elif f['path'] == 'data/word.doc':
-                self.assertEqual(f['mediatype'], 'application/msword')
-                self.assertTrue(f['description'].startswith('Composite Document File V2 Document, Little Endian'))
-                self.assertTrue(f['encoding'] in ['application/mswordbinary',
-                    'application/mswordunknown'])
+        self.assertTrue(os.path.isfile(formats[1]['path']))
+        self.assertEqual(formats[1]['mediatype'], 'application/msword')
+        self.assertEqual(formats[1]['name'], 'Microsoft Word for Windows Document')
+        self.assertEqual(formats[1]['description'], 'Microsoft Word for Windows 97 - 2002')
 
-            else:
-                self.fail("unexpected path: %s" % f['path'])
+        self.assertTrue(os.path.isfile(formats[2]['path']))
+        self.assertEqual(formats[2]['mediatype'], 'application/vnd.wordperfect')
+        self.assertEqual(formats[2]['name'], 'WordPerfect for MS-DOS/Windows Document')
+        self.assertEqual(formats[2]['description'], 'WordPerfect 5.1')
 
-
-    def test_symlink(self):
-        link_name = 'test__symlink'
-        if os.path.islink(link_name):
-            os.remove(link_name)
-        os.symlink(test_data, link_name)
-        formats = fondz.identify.identify_dir(link_name)
-        self.assertEqual(len(formats), 4)
-        os.remove(link_name)
+        self.assertTrue(os.path.isfile(formats[3]['path']))
+        self.assertEqual(formats[3]['mediatype'], 'None')
+        self.assertEqual(formats[3]['name'], 'Microsoft Office Open XML - Word')
+        self.assertEqual(formats[3]['description'], 'Microsoft Office Open XML - Word')
 
 
     def test_summarize(self):
@@ -57,5 +60,3 @@ class FileFormat(unittest.TestCase):
         summary = fondz.identify.mediatype_summary(f)
         self.assertEqual(summary[0]['name'], 'text/plain')
         self.assertEqual(len(summary[0]['files']), 8)
-
-

@@ -45,3 +45,7 @@ def render(template, *args, **kwargs):
 def render_to(template, html_file, *args, **kwargs):
     html = render(template, *args, **kwargs)
     open(html_file, "w").write(html)
+
+
+def listdir_fullpath(d):
+    return [os.path.join(d,f) for f in os.listdir(d)]

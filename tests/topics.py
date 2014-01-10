@@ -11,7 +11,7 @@ class TopicTest(TestCase):
     
     def test_topics(self):
         results = topics(test_data)
-        self.assertTrue(len(results) in [8,9])
+        self.assertTrue(len(results), 10)
         self.assertEqual(len(results[0]['words']), 15)
         for topic in results:
             self.assertTrue(len(topic['files']) > 0)
@@ -19,6 +19,8 @@ class TopicTest(TestCase):
             self.assertTrue(topic['score'])
 
     def test_summarize(self): 
+        # text_dir doesn't need to exist for this test, it is simply 
+        # a test that the paths in the topics_file and made relative
         text_dir = '/home/ubuntu/fondz/x/derivatives'
         topics_file = os.path.join(os.path.dirname(__file__), 'data', 
                 'topics.txt')

@@ -1,6 +1,8 @@
 fondz 
 -----
 
+*WORK IN PROGRESS WARNING*
+
 [![travis-ci status](https://travis-ci.org/edsu/fondz.png)](http://travis-ci.org/edsu/fondz)
 
 fondz is a command line tool for auto-generating an "archival description" for a set of born digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series of bags. The name fondz was borrowed from a [humorous](http://curatememe.tumblr.com/post/28097866834/respect-de-fondz-taking-into-consideration-the) take on the archival principle of [provenance](http://www2.archivists.org/glossary/terms/p/provenance) or respect de fonds. fondz works best if you point it at a collection of content that has some thematic unity, such as a collection associated with an individual, family or organization.
@@ -56,22 +58,15 @@ browser and browse the content.
 Install
 -------
 
-These instructions assume you are on Ubuntu. You should be able to adapt them
-for other systems. We need to build the latest Mallet because it has some fixes
-that aren't available in the last release (v2.0.7):
-
-* sudo apt-get install libreoffice-dev python-pip mercurial default-jdk ant libimage-exiftool-perl unoconv
-* hg clone http://hg-iesl.cs.umass.edu/hg/mallet
-* cd mallet ; ant ; cd .. ; sudo mv mallet /opt
-* add /opt/mallet/bin to your $PATH
-* sudo pip install fondz
+On Ubuntu you should be able to install fondz by running scripts/install.sh.
+If you are on OSX or Windows you should be able to read the install.sh and
+figure out what you need to install and put in your PATH.
 
 Ideas
 -----
 
 If you've got ideas for things fondz could do, please submit them as
 an enhancement issue at [GitHub](https://github.com/edsu/fondz/issues/new).
-
 
 These are ideas that seem theoretically doable. If you have similar
 ideas to add, please send me a pull request for your changes to the README.md, 

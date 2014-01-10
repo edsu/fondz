@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# ubuntu install: windows/osx should be doable by riffing on this
+
+FONDZ_HOME=/opt/fondz
+mkdir $FONDZ_HOME
+
+echo "- installing system level dependencies"
+apt-get install libreoffice python-virtualenv python-pip mercurial default-jdk ant libimage-exiftool-perl gcc
+
+echo "- installing mallet into $FONDZ_HOME/mallet"
+hg clone http://hg-iesl.cs.umass.edu/hg/mallet >/dev/null
+cd mallet ; ant >/dev/null ; cd ..
+mv mallet "$FONDZ_HOME/mallet"
+
+echo "- installing fido into /opt/fondz/fido"
+wget --quiet https://github.com/openplanets/fido/archive/1.3.1-70.tar.gz
+tar xfz 1.3.1-70.tar.gz
+mv fido-1.3.1-70 "$FONDZ_HOME/fido"
+rm 1.3.1-70.tar.gz
+
+echo "- updating PATH in $HOME/.profile"
+cp $HOME/.profile $HOME/.profile.`date +%s` # just in case 
+echo "\n\n# fondz needs these in your path" >> $HOME/.profile
+echo "export PATH=$FONDZ_HOME/mallet/bin:$FONDZ_HOME/fido/fido:\$PATH" >> $HOME/.profile
+source $HOME/.profile
+
+# todo: install python requirements?
+
+echo "\nfinished installing fondz dependencies"

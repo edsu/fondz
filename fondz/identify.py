@@ -1,34 +1,44 @@
 import os
+import csv
 import magic
 import logging
 
-from utils import run
+from utils import run, which
+
+fido = which("fido.py")
 
 
-description = magic.Magic()
-mediatype = magic.Magic(mime=True)
-encoding = magic.Magic(mime_encoding=True)
+def identify(fondz_dir):
+    results = []
+    src_dir = os.path.join(fondz_dir, "originals")
+    for f in os.listdir(src_dir):
+        data_dir = os.path.join(src_dir, f, 'data')
+        if os.path.isdir(data_dir):
+            results.extend(identify_dir(data_dir))
+
+    for f in results:
+        f['path'] = os.path.relpath(f['path'], fondz_dir)
+
+    return results
 
 
-def identify_dir(src_dir):
-    logging.info("starting format identification for %s", src_dir)
-    src_dir = os.path.abspath(src_dir)
+def identify_dir(d):
+    logging.info("starting format identification for %s", d)
+    d = os.path.abspath(d)
 
-    parent_dir = os.path.dirname(src_dir)
     formats = []
-    for dirpath, dirnames, filenames in os.walk(src_dir, followlinks=True):
-        for filename in filenames:
-            path = os.path.join(dirpath, filename)
-            rel_path = os.path.relpath(path, parent_dir)
-            logging.info("format identification for %s", path)
-            m = {
-                "path": rel_path, 
-                "mediatype": mediatype.from_file(path),
-                "description": description.from_file(path),
-                "encoding": encoding.from_file(path)
-            }
-            logging.info("got %s", m)
-            formats.append(m)
+    rc, output = run([fido, "-r", d])
+    reader = csv.reader(output)
+    for row in reader:
+        m = {
+            "path": row[6],
+            "name": row[3],
+            "description": row[4],
+            "mediatype": row[7],
+        }
+        logging.info("got %s", m)
+        formats.append(m)
+
     return formats
 
 
@@ -42,3 +52,6 @@ def mediatype_summary(formats):
     sorted_mediatypes = counts.keys()
     sorted_mediatypes.sort(lambda a, b: cmp(len(counts[b]), len(counts[a])))
     return [{'name': m, 'files': counts[m]} for m in sorted_mediatypes]
+
+
+
