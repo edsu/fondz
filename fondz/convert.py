@@ -22,6 +22,8 @@ def convert(fondz_dir):
 
 def convert_dir(from_dir, to_dir):
     logging.info("converting %s to %s", from_dir, to_dir)
+    from_dir = os.path.abspath(from_dir)
+    to_dir = os.path.abspath(to_dir)
 
     for filename in os.listdir(from_dir):
         path = os.path.join(from_dir, filename)
