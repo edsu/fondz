@@ -42,16 +42,16 @@ def identify_dir(d):
     return formats
 
 
-def mediatype_summary(formats):
+def summarize(formats):
     counts = {}
     for f in formats:
-        mediatype = f['mediatype']
-        if mediatype not in counts:
-            counts[mediatype] = []
-        counts[mediatype].append(f['path'])
-    sorted_mediatypes = counts.keys()
-    sorted_mediatypes.sort(lambda a, b: cmp(len(counts[b]), len(counts[a])))
-    return [{'name': m, 'files': counts[m]} for m in sorted_mediatypes]
+        name = f['name']
+        if name not in counts:
+            counts[name] = []
+        counts[name].append(f['path'])
+    sorted_names = counts.keys()
+    sorted_names.sort(lambda a, b: cmp(len(counts[b]), len(counts[a])))
+    return [{'name': m, 'files': counts[m]} for m in sorted_names]
 
 
 

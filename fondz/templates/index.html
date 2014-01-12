@@ -21,13 +21,13 @@
 {% endfor %}
 </table>
 
-<h2>Media-type Summary</h2>
-<table id="mediatypes">
+<h2>Format Summary</h2>
+<table id="formats">
   <tr>
-  <th>MediaType</th>
+  <th>Type</th>
   <th>Files</th>
   </tr>
-  {% for m in mediatypes %}
+  {% for m in format_summary %}
   <tr>
     <td>{{ m.name }}</td>
     <td>{% for f in m.files %}{{ f }}{% endfor %}</td>

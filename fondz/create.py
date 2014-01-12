@@ -5,7 +5,7 @@ from os.path import join, isdir, abspath
 
 from fondz.topics import topics
 from fondz.convert import convert
-from fondz.identify import identify, mediatype_summary
+from fondz.identify import identify, summarize
 from fondz.utils import render_to, write_json, read_json
 
 
@@ -59,9 +59,10 @@ def write_index(fondz_dir):
     index_file = join(fondz_dir, "index.html")
     topics = read_json(join(fondz_dir, "js", "topics.json"))
     formats = read_json(join(fondz_dir, "js", "formats.json"))
-    mediatypes = mediatype_summary(formats)
+    format_summary = summarize(formats)
 
-    render_to('index.html', index_file, topics=topics, mediatypes=mediatypes)
+    render_to('index.html', index_file, topics=topics,
+            format_summary=format_summary)
 
 
 def mkdir(*parts):
