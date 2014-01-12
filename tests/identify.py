@@ -35,6 +35,12 @@ class FileFormat(unittest.TestCase):
 
         formats.sort(lambda a, b: cmp(a['mediatype'], b['mediatype']))
 
+        self.assertTrue(os.path.isfile(formats[0]['path']))
+        self.assertEqual(formats[0]['mediatype'], 'None')
+        self.assertEqual(formats[0]['name'], 'Microsoft Office Open XML - Word')
+        self.assertEqual(formats[0]['description'], 'Microsoft Office Open XML - Word')
+
+
         self.assertTrue(os.path.isfile(formats[1]['path']))
         self.assertEqual(formats[1]['mediatype'], 'application/msword')
         self.assertEqual(formats[1]['name'], 'Microsoft Word for Windows Document')
@@ -45,15 +51,10 @@ class FileFormat(unittest.TestCase):
         self.assertEqual(formats[2]['name'], 'WordPerfect for MS-DOS/Windows Document')
         self.assertEqual(formats[2]['description'], 'WordPerfect 5.1')
 
-        self.assertTrue(os.path.isfile(formats[0]['path']))
-        self.assertEqual(formats[0]['mediatype'], 'image/jpeg')
-        self.assertEqual(formats[0]['name'], 'JPEG File Interchange Format')
-        self.assertEqual(formats[0]['description'], 'JFIF 1.01')
-
         self.assertTrue(os.path.isfile(formats[3]['path']))
-        self.assertEqual(formats[3]['mediatype'], 'None')
-        self.assertEqual(formats[3]['name'], 'Microsoft Office Open XML - Word')
-        self.assertEqual(formats[3]['description'], 'Microsoft Office Open XML - Word')
+        self.assertEqual(formats[3]['mediatype'], 'image/jpeg')
+        self.assertEqual(formats[3]['name'], 'JPEG File Interchange Format')
+        self.assertEqual(formats[3]['description'], 'JFIF 1.01')
 
 
     def test_summarize(self):
