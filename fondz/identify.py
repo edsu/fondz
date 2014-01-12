@@ -53,5 +53,3 @@ def summarize(formats):
     sorted_names.sort(lambda a, b: cmp(len(counts[b]), len(counts[a])))
     return [{'name': m, 'files': counts[m]} for m in sorted_names]
 
-
-

@@ -1,50 +1,50 @@
 [
   {
-    "path": "originals/1/keats-on-497.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-ode-493.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }, 
   {
-    "path": "originals/1/keats-ode-494.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-ode-494.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }, 
   {
-    "path": "originals/1/keats-on-499.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-ode-495.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }, 
   {
-    "path": "originals/1/keats-on-500.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-ode-496.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }, 
   {
-    "path": "originals/1/keats-ode-496.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-on-497.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }, 
   {
-    "path": "originals/1/keats-ode-495.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-on-498.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }, 
   {
-    "path": "originals/1/keats-ode-493.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-on-499.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }, 
   {
-    "path": "originals/1/keats-on-498.txt", 
-    "encoding": "us-ascii", 
+    "path": "originals/1/data/keats-on-500.txt", 
+    "name": "Plain Text File", 
     "mediatype": "text/plain", 
-    "description": "ASCII text"
+    "description": "External"
   }
 ]
