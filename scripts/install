@@ -24,9 +24,6 @@ then
     echo "- updating PATH in $HOME/.profile"
     echo "export PATH=$FONDZ_HOME/mallet/bin:$FONDZ_HOME/fido/fido:\$PATH" >> $HOME/.profile
     source $HOME/.profile
-else 
-    echo "- updating PATH for travis-ci"
-    export PATH=$FONDZ_HOME/mallet/bin:$FONDZ_HOME/fido/fido:$PATH;
 fi
 
 # todo: install python requirements?
