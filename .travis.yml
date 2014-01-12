@@ -6,7 +6,7 @@ install:
 - sudo scripts/install
 - pip install -r requirements.txt
 script:
-- echo "PATH=$PATH"
+- export PATH=/opt/fondz/mallet/bin:/opt/fondz/fido/fido:$PATH
 - python setup.py test 
 after_failure:
 - cat test.log
