@@ -19,11 +19,15 @@ tar xfz 1.3.1-70.tar.gz
 mv fido-1.3.1-70 "$FONDZ_HOME/fido"
 rm 1.3.1-70.tar.gz
 
-echo "- updating PATH in $HOME/.profile"
-cp $HOME/.profile $HOME/.profile.`date +%s` # just in case 
-echo "\n\n# fondz needs these in your path" >> $HOME/.profile
-echo "export PATH=$FONDZ_HOME/mallet/bin:$FONDZ_HOME/fido/fido:\$PATH" >> $HOME/.profile
-source $HOME/.profile
+if [-z "$TRAVIS" ]
+then
+    eho "- updating PATH for travis-ci"
+    export PATH=$FONDZ_HOME/mallet/bin:$FONDZ_HOME/fido/fido:$PATH;
+else 
+    echo "- updating PATH in $HOME/.profile"
+    echo "export PATH=$FONDZ_HOME/mallet/bin:$FONDZ_HOME/fido/fido:\$PATH" >> $HOME/.profile
+    source $HOME/.profile
+fi
 
 # todo: install python requirements?
 
