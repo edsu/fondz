@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # ubuntu install: windows/osx should be doable by riffing on this
 
