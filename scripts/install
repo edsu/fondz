@@ -31,4 +31,4 @@ fi
 
 # todo: install python requirements?
 
-echo "\nfinished installing fondz dependencies"
+echo "finished installing fondz dependencies"

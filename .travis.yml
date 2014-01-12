@@ -6,6 +6,7 @@ install:
 - sudo scripts/install
 - pip install -r requirements.txt
 script:
+- echo "PATH=$PATH"
 - python setup.py test 
 after_failure:
 - cat test.log
