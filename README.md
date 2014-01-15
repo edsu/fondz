@@ -34,20 +34,20 @@ Here's an example for generating a finding aid for two bags, the first bag
 which contains a Word document `abc.doc`, and the second which contains a 
 WordPerfect document `def.wpd`.
 
-    % fondz example /path/to/a/bag /path/to/another/bag
+    % fondz create example /path/to/a/bag /path/to/another/bag
     % tree example/
     example/
     ├── css
     │   └── style.css
     ├── derivatives
-    │   └── html
-    │       ├── 1
-    │       │   └── abc.html
-    │       └── 2
-    │           └── def.html
+    │   ├── 1
+    │   │   └── abc.wpd.html
+    │   └── 2
+    │       └── def.doc.html
     ├── index.html
     ├── js
-    │   └── topics.json
+    │   │── topics.json
+    │   └── formats.json
     └── originals
         ├── 1 -> /path/to/a/bag
         └── 2 -> /path/to/another/bag
