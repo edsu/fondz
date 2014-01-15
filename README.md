@@ -5,7 +5,7 @@ fondz
 
 [![travis-ci status](https://travis-ci.org/edsu/fondz.png)](http://travis-ci.org/edsu/fondz)
 
-fondz is a command line tool for auto-generating an "archival description" for a set of born digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series of bags. The name fondz was borrowed from a [humorous](http://curatememe.tumblr.com/post/28097866834/respect-de-fondz-taking-into-consideration-the) take on the archival principle of [provenance](http://www2.archivists.org/glossary/terms/p/provenance) or respect de fonds. fondz works best if you point it at a collection of content that has some thematic unity, such as a collection associated with an individual, family or organization.
+fondz is a command line tool for auto-generating an "archival description" for a set of born digital content found in a [bag](http://en.wikipedia.org/wiki/BagIt) or series of bags. The name fondz was borrowed from a [humorous](http://curatememe.tumblr.com/post/28097866834/respect-de-fondz-taking-into-consideration-the) take on the archival principle of [provenance](http://www2.archivists.org/glossary/terms/p/provenance) or respect des fonds. fondz works best if you point it at a collection of content that has some thematic unity, such as a collection associated with an individual, family or organization.
 
 The description that fondz generates is expressed as HTML, suitable for 
 viewing in both online and offline mode without the need for running software
