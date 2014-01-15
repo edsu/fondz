@@ -41,9 +41,9 @@ WordPerfect document `def.wpd`.
     │   └── style.css
     ├── derivatives
     │   ├── 1
-    │   │   └── abc.wpd.html
+    │   │   └── abc.doc.html
     │   └── 2
-    │       └── def.doc.html
+    │       └── def.wpd.html
     ├── index.html
     ├── js
     │   │── topics.json
