@@ -52,3 +52,14 @@ def identify(args, console):
         console.error("You must supply a fondz directory path")
         sys.exit(2)
     fondz.identify(args[0])
+
+@app(usage="FONDZ_DIR")
+def write(args, console):
+    """
+    Write or re-write fondz description.
+    """
+    if len(args) < 1:
+        console.error("You must supply a fondz directory path")
+        sys.exit(2)
+    fondz.write(args[0])
+

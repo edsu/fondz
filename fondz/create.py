@@ -34,7 +34,7 @@ def create(fondz_dir, *bags, **kwargs):
     # move/copy log file into fondz_dir?
 
     # finally, write out the description
-    write_index(fondz_dir)
+    write(fondz_dir)
 
 
 def init(fondz_dir):
@@ -58,7 +58,7 @@ def add_bag(fondz_dir, bag_dir):
     os.symlink(bag_dir, link_name)
 
 
-def write_index(fondz_dir):
+def write(fondz_dir):
     index_file = join(fondz_dir, "index.html")
     topics = read_json(join(fondz_dir, "js", "topics.json"))
     formats = read_json(join(fondz_dir, "js", "formats.json"))
