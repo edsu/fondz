@@ -53,6 +53,7 @@ def identify(args, console):
         sys.exit(2)
     fondz.identify(args[0])
 
+
 @app(usage="FONDZ_DIR")
 def write(args, console):
     """

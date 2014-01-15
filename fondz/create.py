@@ -26,14 +26,6 @@ def create(fondz_dir, *bags, **kwargs):
     fondz.convert(fondz_dir)
     fondz.identify(fondz_dir)
     fondz.topics(fondz_dir)
-
-    # ideas:
-    # ocr?
-    # thumbnails?
-    # dzi files?
-    # move/copy log file into fondz_dir?
-
-    # finally, write out the description
     write(fondz_dir)
 
 
