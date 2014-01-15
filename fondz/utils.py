@@ -26,10 +26,12 @@ def run(cmd):
 
 
 def write_json(d, filename):
+    logging.info("writing %s", filename)
     open(filename, "w").write(json.dumps(d, indent=2))
 
 
 def read_json(filename):
+    logging.info("reading %s", filename)
     return json.loads(open(filename).read())
 
 

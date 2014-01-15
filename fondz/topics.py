@@ -2,22 +2,25 @@ import shutil
 import tempfile
 from os.path import join, abspath
 
-from utils import which, run
+from utils import which, run, write_json
 
 mallet = which('mallet')
 
-def topics(text_dir, 
+def topics(fondz_dir, 
            num_topics=10, 
            num_top_words=15,
            num_threads=2, 
            iterations=1000, 
            doc_topics_threshold='0.1', 
            optimize_interval=10):
+    """
+    topics will do topic modeling on a fondz directory
+    """
 
     if not mallet:
         raise Exception("mallet not found on PATH")
 
-    text_dir = abspath(text_dir)
+    text_dir = abspath(join(fondz_dir, "derivatives"))
     tmp_dir = tempfile.mkdtemp()
     data_file = join(tmp_dir, 'data.mallet')
     state_file = join(tmp_dir, 'state.gz')
@@ -45,6 +48,9 @@ def topics(text_dir,
         '--output-topic-keys', topic_keys_file])
 
     results = summarize(text_dir, topics_file, topic_keys_file)
+    topics_json_file = join(fondz_dir, "js", "topics.json")
+    write_json(results, topics_json_file)
+
     shutil.rmtree(tmp_dir)
 
     return results

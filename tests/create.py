@@ -1,8 +1,10 @@
 import os
-import fondz
 import json
+import fondz
 import tempfile
 import unittest
+
+from fondz.create import init, add_bag
 
 from os.path import join, isdir, isfile, islink, realpath
 
@@ -13,7 +15,7 @@ class CreateTests(unittest.TestCase):
 
     def test_init(self):
         d = tempfile.mkdtemp()
-        fondz.create.init(d)
+        init(d)
         self.assertTrue(isdir(join(d, "js")))
         self.assertTrue(isdir(join(d, "css")))
         self.assertTrue(isdir(join(d, "images")))
@@ -23,14 +25,14 @@ class CreateTests(unittest.TestCase):
 
     def test_add_bag(self):
         d = tempfile.mkdtemp()
-        fondz.create.init(d)
+        init(d)
 
-        fondz.create.add_bag(d, bag1)
+        add_bag(d, bag1)
         p1 = join(d, "originals", "1")
         self.assertTrue(islink(p1))
         self.assertEqual(realpath(p1), bag1)
 
-        fondz.create.add_bag(d, bag2)
+        add_bag(d, bag2)
         p2 = join(d, "originals", "2")
         self.assertTrue(islink(p2))
         self.assertEqual(realpath(p2), bag2)
@@ -38,7 +40,7 @@ class CreateTests(unittest.TestCase):
 
     def test_create(self):
         d = tempfile.mkdtemp()
-        fondz.create.create(d, bag1)
+        fondz.create(d, bag1)
         self.assertTrue(isdir(d))
 
         # derivatives there?

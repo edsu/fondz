@@ -1,22 +1,28 @@
 import os
 import json
-
-from unittest import TestCase
+import fondz
+import shutil
+import tempfile
+import unittest
 
 from fondz.topics import topics, summarize
 
-test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag2', 'data')
+bag = os.path.join(os.path.dirname(__file__), 'data', 'bag2')
 
-class TopicTest(TestCase):
+class TopicTest(unittest.TestCase):
     
     def test_topics(self):
-        results = topics(test_data)
+        fondz_dir = tempfile.mkdtemp()
+        fondz.create(fondz_dir, bag)
+        topics_file = os.path.join(fondz_dir, 'js', 'topics.json')
+        results = fondz.utils.read_json(topics_file)
         self.assertTrue(len(results), 10)
         self.assertEqual(len(results[0]['words']), 15)
         for topic in results:
             self.assertTrue(len(topic['files']) > 0)
             self.assertTrue(len(topic['words']) > 0)
             self.assertTrue(topic['score'])
+        shutil.rmtree(fondz_dir)
 
     def test_summarize(self): 
         # text_dir doesn't need to exist for this test, it is simply 

@@ -5,6 +5,9 @@ import shutil
 import tempfile
 import unittest
 
+from fondz.create import init, add_bag, summarize
+from fondz.identify import identify_dir
+
 test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag1', 'data')
 
 
@@ -12,15 +15,15 @@ class FileFormat(unittest.TestCase):
 
     def test_identify(self):
         fondz_dir = tempfile.mkdtemp()
-        fondz.create.init(fondz_dir)
+        init(fondz_dir)
 
         bag1 = os.path.join(os.path.dirname(__file__), 'data', 'bag1')
-        fondz.create.add_bag(fondz_dir, bag1)
+        add_bag(fondz_dir, bag1)
 
         bag2 = os.path.join(os.path.dirname(__file__), 'data', 'bag2')
-        fondz.create.add_bag(fondz_dir, bag2)
+        add_bag(fondz_dir, bag2)
 
-        results = fondz.identify.identify(fondz_dir)
+        results = fondz.identify(fondz_dir)
         self.assertEqual(len(results), 12)
 
         # make sure all the paths have been made relative
@@ -30,7 +33,7 @@ class FileFormat(unittest.TestCase):
         shutil.rmtree(fondz_dir)
 
     def test_identify_dir(self):
-        formats = fondz.identify.identify_dir(test_data)
+        formats = identify_dir(test_data)
         self.assertEqual(len(formats), 4)
 
         formats.sort(lambda a, b: cmp(a['mediatype'], b['mediatype']))
@@ -60,6 +63,6 @@ class FileFormat(unittest.TestCase):
     def test_summarize(self):
         filename = os.path.join(os.path.dirname(__file__), 'data', 'formats.json')
         f = json.loads(open(filename).read())
-        summary = fondz.identify.summarize(f)
+        summary = summarize(f)
         self.assertEqual(summary[0]['name'], 'Plain Text File')
         self.assertEqual(len(summary[0]['files']), 8)

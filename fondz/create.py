@@ -1,5 +1,6 @@
 import os
 import json
+import fondz
 import logging
 from os.path import join, isdir, abspath
 
@@ -10,22 +11,21 @@ from fondz.utils import render_to, write_json, read_json
 
 
 def create(fondz_dir, *bags, **kwargs):
+    """
+    create will initialize initialize a new fondz directory add one or more
+    bags to it, convert what it can to web accessible formats, run topic 
+    modeling, and format identification, and write out a HTML description
+    """
+
     init(fondz_dir)
 
     # add all the bags
     for bag in bags:
         add_bag(fondz_dir, bag)
    
-    # try to convert what we can to html
-    convert(fondz_dir)
-
-    # identify formats
-    formats = identify(fondz_dir)
-    write_json(formats, join(fondz_dir, "js", "formats.json"))
-
-    # topic model on the html
-    topic_model = topics(join(fondz_dir, "derivatives"))
-    write_json(topic_model, join(fondz_dir, "js", "topics.json"))
+    fondz.convert(fondz_dir)
+    fondz.identify(fondz_dir)
+    fondz.topics(fondz_dir)
 
     # ideas:
     # ocr?
@@ -46,6 +46,9 @@ def init(fondz_dir):
 
 
 def add_bag(fondz_dir, bag_dir):
+    """
+    add a particular bagit directory to the fondz description
+    """
     # TODO: make sure bag_dir is actually a valid bag
     current_bags = os.listdir(join(fondz_dir, "originals"))
     next_orig = str(len(current_bags) + 1)
@@ -61,8 +64,9 @@ def write_index(fondz_dir):
     formats = read_json(join(fondz_dir, "js", "formats.json"))
     format_summary = summarize(formats)
 
-    render_to('index.html', index_file, topics=topics,
-            format_summary=format_summary)
+    render_to('index.html', index_file, 
+              topics=topics,
+              format_summary=format_summary)
 
 
 def mkdir(*parts):

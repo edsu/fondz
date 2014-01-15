@@ -1,14 +1,17 @@
 import os
 import csv
-import magic
 import logging
 
-from utils import run, which
+from utils import run, which, write_json
 
 fido = which("fido.py")
 
 
 def identify(fondz_dir):
+    """
+    Will run identification over the source bags, and write out the
+    format report to the js/formats.json file in the fondz directory.
+    """
     results = []
     src_dir = os.path.join(fondz_dir, "originals")
     for f in os.listdir(src_dir):
@@ -18,6 +21,9 @@ def identify(fondz_dir):
 
     for f in results:
         f['path'] = os.path.relpath(f['path'], fondz_dir)
+
+    formats_file = os.path.join(fondz_dir, "js", "formats.json")
+    write_json(results, formats_file)
 
     return results
 
