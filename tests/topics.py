@@ -23,7 +23,7 @@ class TopicTest(unittest.TestCase):
 
         # the actual topics 
         topics = results['topics']
-        self.assertEqual(len(topics) > 0) 
+        self.assertTrue(len(topics) > 0) 
         self.assertEqual(len(topics[0]['words']), 15)
         for topic in topics:
             self.assertTrue(len(topic['files']) > 0)
