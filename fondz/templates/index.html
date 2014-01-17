@@ -13,7 +13,7 @@
     <th>Topics</th>
     <th>Files</th>
   </tr>
-  {% for topic in topics %}
+  {% for topic in topics.topics %}
   <tr>
     <td>{% for word in topic.words %}{{ word }} {% endfor %}</td>
     <td>{% for file in topic.files %}{{ file.0 }} {% endfor %}</td>

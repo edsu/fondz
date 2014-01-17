@@ -16,9 +16,17 @@ class TopicTest(unittest.TestCase):
         fondz.create(fondz_dir, bag)
         topics_file = os.path.join(fondz_dir, 'js', 'topics.json')
         results = fondz.utils.read_json(topics_file)
-        self.assertTrue(len(results), 10)
-        self.assertEqual(len(results[0]['words']), 15)
-        for topic in results:
+
+        # make sure mallet details are present
+        self.assertTrue('mallet' in results)
+        self.assertEqual(len(results['mallet']), 2)
+
+        # the actual topics 
+        topics = results['topics']
+        print json.dumps(topics)
+        self.assertEqual(len(topics), 10)
+        self.assertEqual(len(topics[0]['words']), 15)
+        for topic in topics:
             self.assertTrue(len(topic['files']) > 0)
             self.assertTrue(len(topic['words']) > 0)
             self.assertTrue(topic['score'])
@@ -32,9 +40,13 @@ class TopicTest(unittest.TestCase):
                 'topics.txt')
         topic_keys_file = os.path.join(os.path.dirname(__file__), 'data', 
                 'topic_keys.txt')
-        results = summarize(text_dir, topics_file, topic_keys_file)
+        results = summarize(text_dir, topics_file, topic_keys_file, ['foo',
+        'bar'], ['baz', 'bez'])
 
-        t = results[0]
+        self.assertEqual(results['mallet'][0], 'foo bar')
+        self.assertEqual(results['mallet'][1], 'baz bez')
+
+        t = results['topics'][0]
         self.assertEqual(t['words'], ['melancholy', 'thy', 'joy', 'hand',
             'soul', 'shade', 'sorrow', 'grape', 'beauty', 'hung', 'trophies',
             'cloudy', 'sadness', 'taste', 'fine'])

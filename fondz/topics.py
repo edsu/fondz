@@ -28,14 +28,18 @@ def topics(fondz_dir,
     topic_keys_file = join(tmp_dir, 'topic_keys.txt')
     xml_topic_report = join(tmp_dir, 'report.xml')
 
-    rc, stdout = run([mallet, 'import-dir', 
+    import_cmd = [
+        mallet, 
+        'import-dir', 
         '--input', text_dir, 
         '--output', data_file, 
         '--keep-sequence',  
         '--skip-html',
-        '--remove-stopwords'])
+        '--remove-stopwords'
+    ]
+    run(import_cmd)
 
-    rc, stdout = run([mallet, 'train-topics',
+    train_cmd = [mallet, 'train-topics',
         '--input', data_file,
         '--output-state', state_file, 
         '--num-topics', str(num_topics),
@@ -45,9 +49,12 @@ def topics(fondz_dir,
         '--optimize-interval', str(optimize_interval),
         '--num-top-words', str(num_top_words),
         '--output-doc-topics', topics_file,
-        '--output-topic-keys', topic_keys_file])
+        '--output-topic-keys', topic_keys_file
+    ]
+    rc, stdout = run(train_cmd)
 
-    results = summarize(text_dir, topics_file, topic_keys_file)
+    results = summarize(text_dir, topics_file, topic_keys_file, import_cmd,
+            train_cmd)
     topics_json_file = join(fondz_dir, "js", "topics.json")
     write_json(results, topics_json_file)
 
@@ -56,7 +63,7 @@ def topics(fondz_dir,
     return results
 
 
-def summarize(text_dir, topics_file, topic_keys_file):
+def summarize(text_dir, topics_file, topic_keys_file, import_cmd, train_cmd):
     results = []
 
     # get the list of topics, and their scores
@@ -92,7 +99,13 @@ def summarize(text_dir, topics_file, topic_keys_file):
     # only include topics that are associated with files
     results = filter(lambda t: len(t['files']) > 0, results)
 
-    return results
+    return {
+        "mallet": [
+            ' '.join(import_cmd),
+            ' '.join(train_cmd)
+        ],
+        "topics": results
+    }
         
 
 def get_tsv(filename):
