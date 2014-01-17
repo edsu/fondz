@@ -2,38 +2,55 @@
 <html>
 
 <head>
-<title></title>
+  <title></title>
+  <link rel="stylesheet" href="css/foundation.css" />
 </head>
 
 <body>
 
-<h2>Topics</h2>
-<table id="topics">
-  <tr>
-    <th>Topics</th>
-    <th>Files</th>
-  </tr>
-  {% for topic in topics.topics %}
-  <tr>
-    <td>{% for word in topic.words %}{{ word }} {% endfor %}</td>
-    <td>{% for file in topic.files %}{{ file.0 }} {% endfor %}</td>
-  </tr>
-{% endfor %}
-</table>
+  <h2>Summary</h2>
+  <table>
+    <tr>
+      <td>Bags</td>
+      <td>{{ bag_summary.bags|count }}</td>
+    </tr>
+    <tr>
+      <td>Files</td>
+      <td>{{ bag_summary.num_files }}</td>
+    </tr>
+    <tr>
+      <td>Size</td>
+      <td>{{ bag_summary.bytes }}</td>
+    </tr>
+  </table>
 
-<h2>Format Summary</h2>
-<table id="formats">
-  <tr>
-  <th>Type</th>
-  <th>Files</th>
-  </tr>
-  {% for m in format_summary %}
-  <tr>
-    <td>{{ m.name }}</td>
-    <td>{% for f in m.files %}{{ f }}{% endfor %}</td>
-  </tr>
+  <h2>Formats</h2>
+  <table id="formats">
+    <tr>
+    <th>Type</th>
+    <th>Files</th>
+    </tr>
+    {% for m in format_summary %}
+    <tr>
+      <td>{{ m.name }}</td>
+      <td>{{ m.files|count }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Topics</h2>
+  <table id="topics">
+    <tr>
+      <th>Topics</th>
+      <th>Files</th>
+    </tr>
+    {% for topic in topics.topics %}
+    <tr>
+      <td>{% for word in topic.words %}{{ word }} {% endfor %}</td>
+      <td>{{ topic.files|count }}</td>
+    </tr>
   {% endfor %}
-</table>
+  </table>
 
 </body>
 

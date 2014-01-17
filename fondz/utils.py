@@ -35,10 +35,6 @@ def read_json(filename):
     return json.loads(open(filename).read())
 
 
-tmpl_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja = jinja2.Environment(loader=jinja2.PackageLoader('fondz', 'templates'))
-
-
 def render(template, *args, **kwargs):
     t = jinja.get_template(template)
     return t.render(*args, **kwargs)
@@ -50,4 +46,11 @@ def render_to(template, html_file, *args, **kwargs):
 
 
 def listdir_fullpath(d):
-    return [os.path.join(d,f) for f in os.listdir(d)]
+    return [os.path.join(d, f) for f in os.listdir(d)]
+
+
+def template_dir():
+    return os.path.join(os.path.dirname(__file__), 'templates')
+
+
+jinja = jinja2.Environment(loader=jinja2.PackageLoader('fondz', 'templates'))

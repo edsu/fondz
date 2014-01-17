@@ -63,4 +63,3 @@ def write(args, console):
         console.error("You must supply a fondz directory path")
         sys.exit(2)
     fondz.write(args[0])
-
