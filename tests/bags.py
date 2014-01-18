@@ -23,8 +23,8 @@ class BagsTests(unittest.TestCase):
         self.assertTrue(os.path.isfile(bags_json))
         result = read_json(bags_json)
         self.assertEqual(len(result['bags']), 2)
-        self.assertEqual(result['num_files'], 11)
-        self.assertEqual(result['bytes'], 767820)
+        self.assertEqual(result['num_files'], 12)
+        self.assertEqual(result['bytes'], 7772330)
 
 
 
