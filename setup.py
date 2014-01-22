@@ -28,5 +28,12 @@ setup(
         author_email = 'ehs@pobox.com',
         packages = find_packages(),
         scripts = ['scripts/fondz'],
-        package_data = {'fondz': ['templates/*.html']},
+        package_data = {'fondz': [
+        		'templates/*.html',
+        		'templates/css/*',
+        		'templates/img/*',
+        		'templates/js/*.js',
+        		'templates/js/vendor/*',
+        		'templates/js/foundation/*'
+        	]},
         test_suite = 'tests',)
