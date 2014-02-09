@@ -55,8 +55,8 @@ class CreateTests(unittest.TestCase):
         self.assertEqual(f['path'], 'data/newspaper.jpg')
         self.assertEqual(f['md5'], 'a0471d984e6e82f15da686cebdb38a36')
         self.assertEqual(f['bytes'], 7004510)
-        self.assertEqual(f['modified'], '2013-12-20T11:12:52')
-        self.assertEqual(f['created'], '2013-12-20T11:12:52')
+        self.assertTrue(f['modified'])
+        self.assertTrue(f['created'])
         self.assertEqual(f['format'], 'fmt/43')
 
         # make sure formats are populated
