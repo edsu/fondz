@@ -1,61 +1,35 @@
-import os
 import csv
 import logging
 
 from utils import run, which, write_json
+from os.path import abspath, join, relpath
 
 fido = which("fido.py")
 
-
-def identify(fondz_dir):
-    """
-    Will run identification over the source bags, and write out the
-    format report to the js/formats.json file in the fondz directory.
-    """
-    results = []
-    src_dir = os.path.join(fondz_dir, "originals")
-    for f in os.listdir(src_dir):
-        data_dir = os.path.join(src_dir, f, 'data')
-        if os.path.isdir(data_dir):
-            results.extend(identify_dir(data_dir))
-
-    for f in results:
-        f['path'] = os.path.relpath(f['path'], fondz_dir)
-
-    formats_file = os.path.join(fondz_dir, "js", "formats.json")
-    write_json(results, formats_file)
-
-    return results
+logger = logging.getLogger("fondz")
 
 
-def identify_dir(d):
-    logging.info("starting format identification for %s", d)
-    d = os.path.abspath(d)
+def get_file_formats(bag_dir):
+    logger.info("starting format identification for %s", bag_dir)
+    data_dir = join(abspath(bag_dir), "data")
+    
+    files = {}
+    formats = {}
 
-    formats = []
-    rc, output = run([fido, "-r", d])
+    rc, output = run([fido, "-r", data_dir])
     reader = csv.reader(output)
-    for row in reader:
-        m = {
-            "path": row[6],
-            "name": row[3],
-            "description": row[4],
-            "mediatype": row[7],
+    for r in reader:
+        puid, name, desc, path, mediatype = r[2], r[3], r[4], r[6], r[7]
+        path = relpath(path, bag_dir)
+        files[path] = puid
+        formats[puid] = {
+            "name": name,
+            "description": desc,
+            "mediatype": mediatype
         }
-        logging.info("got %s", m)
-        formats.append(m)
+        logging.info("fido identified %s as %s", path, puid)
 
-    return formats
+    logging.info("finished file identification for %s", bag_dir)
 
-
-def summarize(formats):
-    counts = {}
-    for f in formats:
-        name = f['name']
-        if name not in counts:
-            counts[name] = []
-        counts[name].append(f['path'])
-    sorted_names = counts.keys()
-    sorted_names.sort(lambda a, b: cmp(len(counts[b]), len(counts[a])))
-    return [{'name': m, 'files': counts[m]} for m in sorted_names]
+    return files, formats
 

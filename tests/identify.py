@@ -1,68 +1,49 @@
-import os
 import json
 import fondz
 import shutil
 import tempfile
 import unittest
 
-from fondz.create import init, add_bag, summarize
-from fondz.identify import identify_dir
+from os.path import join, dirname
+from fondz.create import init, add_bag
+from fondz.identify import get_file_formats
 
-test_data = os.path.join(os.path.dirname(__file__), 'data', 'bag1', 'data')
-
-
-class FileFormat(unittest.TestCase):
-
-    def test_identify(self):
-        fondz_dir = tempfile.mkdtemp()
-        init(fondz_dir)
-
-        bag1 = os.path.join(os.path.dirname(__file__), 'data', 'bag1')
-        add_bag(fondz_dir, bag1)
-
-        bag2 = os.path.join(os.path.dirname(__file__), 'data', 'bag2')
-        add_bag(fondz_dir, bag2)
-
-        results = fondz.identify(fondz_dir)
-        self.assertEqual(len(results), 12)
-
-        # make sure all the paths have been made relative
-        for f in results:
-            self.assertTrue(f['path'].startswith('originals'))
-
-        shutil.rmtree(fondz_dir)
-
-    def test_identify_dir(self):
-        formats = identify_dir(test_data)
-        self.assertEqual(len(formats), 4)
-
-        formats.sort(lambda a, b: cmp(a['mediatype'], b['mediatype']))
-
-        self.assertTrue(os.path.isfile(formats[0]['path']))
-        self.assertEqual(formats[0]['mediatype'], 'None')
-        self.assertEqual(formats[0]['name'], 'Microsoft Office Open XML - Word')
-        self.assertEqual(formats[0]['description'], 'Microsoft Office Open XML - Word')
+test_data = join(dirname(__file__), 'data', 'bag1')
 
 
-        self.assertTrue(os.path.isfile(formats[1]['path']))
-        self.assertEqual(formats[1]['mediatype'], 'application/msword')
-        self.assertEqual(formats[1]['name'], 'Microsoft Word for Windows Document')
-        self.assertEqual(formats[1]['description'], 'Microsoft Word for Windows 97 - 2002')
+class FileFormatTest(unittest.TestCase):
 
-        self.assertTrue(os.path.isfile(formats[2]['path']))
-        self.assertEqual(formats[2]['mediatype'], 'application/vnd.wordperfect')
-        self.assertEqual(formats[2]['name'], 'WordPerfect for MS-DOS/Windows Document')
-        self.assertEqual(formats[2]['description'], 'WordPerfect 5.1')
+    def test_get_file_formats(self):
+        files, formats = get_file_formats(test_data)
 
-        self.assertTrue(os.path.isfile(formats[3]['path']))
-        self.assertEqual(formats[3]['mediatype'], 'image/jpeg')
-        self.assertEqual(formats[3]['name'], 'JPEG File Interchange Format')
-        self.assertEqual(formats[3]['description'], 'JFIF 1.01')
+        self.assertEqual(len(files.keys()), 4)
+        self.assertEqual(len(formats.keys()), 4)
 
+        self.assertEqual(files["data/subdir/word.docx"], "fido-fmt/189.word")
+        self.assertEqual(files["data/wordperfect.wp"], "x-fmt/394")
+        self.assertEqual(files["data/newspaper.jpg"], "fmt/43")
+        self.assertEqual(files["data/word.doc"], "fmt/40")
 
-    def test_summarize(self):
-        filename = os.path.join(os.path.dirname(__file__), 'data', 'formats.json')
-        f = json.loads(open(filename).read())
-        summary = summarize(f)
-        self.assertEqual(summary[0]['name'], 'Plain Text File')
-        self.assertEqual(len(summary[0]['files']), 8)
+        self.assertEqual(formats["x-fmt/394"]["name"],
+            "WordPerfect for MS-DOS/Windows Document")
+        self.assertEqual(formats["x-fmt/394"]["mediatype"],
+            "application/vnd.wordperfect")
+        self.assertEqual(formats["x-fmt/394"]["description"],
+            "WordPerfect 5.1")
+
+        self.assertEqual(formats["fido-fmt/189.word"]["name"],
+            "Microsoft Office Open XML - Word")
+        self.assertEqual(formats["fido-fmt/189.word"]["mediatype"], 'None')
+        self.assertEqual(formats["fido-fmt/189.word"]["description"],
+            'Microsoft Office Open XML - Word')
+
+        self.assertEqual(formats["fmt/43"]["name"],
+            "JPEG File Interchange Format")
+        self.assertEqual(formats["fmt/43"]["description"], "JFIF 1.01")
+        self.assertEqual(formats["fmt/43"]["mediatype"], "image/jpeg")
+
+        self.assertEqual(formats["fmt/40"]["name"],
+            "Microsoft Word for Windows Document")
+        self.assertEqual(formats["fmt/40"]["mediatype"], "application/msword")
+        self.assertEqual(formats["fmt/40"]["description"],
+            "Microsoft Word for Windows 97 - 2002")

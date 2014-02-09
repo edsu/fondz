@@ -11,13 +11,6 @@ app = clik.App(
     description=description
 )
 
-logging = logging.basicConfig(
-    filename='fondz.log', 
-    format='%(asctime)-15s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
-
-
 @app(usage="FONDZ_DIR BAG1 [BAG2 ...]")
 def create(args, console):
     """
@@ -27,31 +20,27 @@ def create(args, console):
     more bag directories.
     """
     if len(args) < 2:
-        console.error("You must supply a fondz directory path and a at least one bag.")
+        console.error("You must supply a fondz directory path and at least one bag.")
         sys.exit(2)
-    fondz.create(*args)
+    try:
+        fondz.create(*args)
+    except Exception as e:
+        console.error(e)
 
 
-@app(usage="FONDZ_DIR")
-def topics(args, console):
+@app(usage="FONDZ_DIR BAG_DIR")
+def add_bag(args, console):
     """
-    Generate (or re-generate) topic modeling for a fondz directory.
+    Create a new fondz project.
+
+    Pass in a directory to use for your fondz project, and the path to one or 
+    more bag directories.
     """
-    if len(args) < 1:
-        console.error("You must supply a fondz directory path")
+    if len(args) < 2:
+        console.error("You must supply a fondz directory path and a bag path.")
         sys.exit(2)
-    fondz.topics(args[0])
+    fondz.add_bag(*args)
 
-
-@app(usage="FONDZ_DIR")
-def identify(args, console):
-    """
-    Run (or re-run) format identification for a fondz directory.
-    """
-    if len(args) < 1:
-        console.error("You must supply a fondz directory path")
-        sys.exit(2)
-    fondz.identify(args[0])
 
 
 @app(usage="FONDZ_DIR")
@@ -63,3 +52,11 @@ def write(args, console):
         console.error("You must supply a fondz directory path")
         sys.exit(2)
     fondz.write(args[0])
+
+# send basic information to stderr
+logger = logging.getLogger("fondz")
+log_handler = logging.StreamHandler(sys.stderr)
+log_formatter = logging.Formatter('%(message)s')
+log_handler.setFormatter(log_formatter)
+logger.addHandler(log_handler)
+logger.setLevel(logging.INFO)
