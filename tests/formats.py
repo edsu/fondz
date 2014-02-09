@@ -6,7 +6,7 @@ import unittest
 
 from os.path import join, dirname
 from fondz.create import init, add_bag
-from fondz.identify import get_file_formats
+from fondz.formats import get_file_formats
 
 test_data = join(dirname(__file__), 'data', 'bag1')
 

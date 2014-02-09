@@ -14,15 +14,15 @@
   <table>
     <tr>
       <td>Bags</td>
-      <td>{{ fondz.bags|count }}</td>
+      <td>{{ humanize.intcomma(fondz.bags|count) }}</td>
     </tr>
     <tr>
       <td>Files</td>
-      <td>{{ fondz.num_files }}</td>
+      <td>{{ humanize.intcomma(fondz.num_files) }}</td>
     </tr>
     <tr>
       <td>Size</td>
-      <td>{{ fondz.bytes }}</td>
+      <td>{{ humanize.naturalsize(fondz.bytes) }}</td>
     </tr>
   </table>
   </section>

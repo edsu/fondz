@@ -7,11 +7,12 @@ import fondz
 import shutil
 import logging
 import datetime
+import humanize
 
 from os.path import join, isdir, abspath, relpath
 from fondz.topics import topics
 from fondz.convert import convert
-from fondz.identify import get_file_formats
+from fondz.formats import get_file_formats
 from fondz.utils import render_to, write_json, read_json, template_dir
 
 
@@ -96,6 +97,7 @@ def write(fondz_dir):
 
     render_to('index.html', index_file, 
               fondz=fondz,
+              humanize=humanize,
               format_summary=format_summary)
 
 
