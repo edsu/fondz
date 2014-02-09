@@ -52,11 +52,3 @@ def write(args, console):
         console.error("You must supply a fondz directory path")
         sys.exit(2)
     fondz.write(args[0])
-
-# send basic information to stderr
-logger = logging.getLogger("fondz")
-log_handler = logging.StreamHandler(sys.stderr)
-log_formatter = logging.Formatter('%(message)s')
-log_handler.setFormatter(log_formatter)
-logger.addHandler(log_handler)
-logger.setLevel(logging.INFO)

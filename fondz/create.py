@@ -75,7 +75,7 @@ def add_bag(fondz_dir, bag_dir):
         if bag["path"] == bag_dir:
             raise Exception("bag was already added: %s" % bag_dir)
     bag = _get_bag(bag_dir)
-    _add_formats(bag, fondz)
+    _add_formats(bag, fondz, fondz_dir)
     _convert(bag, fondz_dir)
 
     fondz["bags"].append(bag)
@@ -127,7 +127,9 @@ def _get_bag(path):
     return bag
 
 
-def _add_formats(bag, bags):
+def _add_formats(bag, bags, fondz_dir):
+    logger = logging.getLogger("fondz")
+    logger.info("starting format identification for %s", fondz_dir)
     files, formats = get_file_formats(bag['path'])
     for f in bag['manifest']:
         f['format'] = files[f['path']]
@@ -180,7 +182,6 @@ def _setup_logging(fondz_dir):
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
     logger.setLevel(logging.DEBUG)
-    logger.propagate = False
 
 def _dt(t):
     return time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime(int(t)))

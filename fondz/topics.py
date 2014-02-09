@@ -39,7 +39,7 @@ def topics(fondz_dir,
         '--skip-html',
         '--remove-stopwords'
     ]
-    logging.info("running topic modeling import: %s", import_cmd)
+    logger.debug("running topic modeling import: %s", import_cmd)
     run(import_cmd)
 
     train_cmd = [mallet, 'train-topics',
@@ -54,7 +54,7 @@ def topics(fondz_dir,
         '--output-doc-topics', topics_file,
         '--output-topic-keys', topic_keys_file
     ]
-    logging.info("running topic modeling %s", train_cmd)
+    logger.debug("running topic model training %s", train_cmd)
     rc, stdout = run(train_cmd)
 
     results = summarize(text_dir, topics_file, topic_keys_file, import_cmd,

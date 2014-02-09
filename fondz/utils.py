@@ -25,17 +25,17 @@ def run(cmd):
         line = line.strip()
         logger.debug(line)
     p.wait()
-    logging.debug("finished command, exit code %s", p.returncode)
+    logger.debug("finished command, exit code %s", p.returncode)
     return p.returncode, p.stdout
 
 
 def write_json(d, filename):
-    logging.debug("writing %s", filename)
+    logger.debug("writing %s", filename)
     open(filename, "w").write(json.dumps(d, indent=2))
 
 
 def read_json(filename):
-    logging.debug("reading %s", filename)
+    logger.debug("reading %s", filename)
     return json.loads(open(filename).read())
 
 

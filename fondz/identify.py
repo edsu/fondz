@@ -10,7 +10,7 @@ logger = logging.getLogger("fondz")
 
 
 def get_file_formats(bag_dir):
-    logger.info("starting format identification for %s", bag_dir)
+    logger.debug("starting format identification for %s", bag_dir)
     data_dir = join(abspath(bag_dir), "data")
     
     files = {}
@@ -27,9 +27,9 @@ def get_file_formats(bag_dir):
             "description": desc,
             "mediatype": mediatype
         }
-        logging.info("fido identified %s as %s", path, puid)
+        logger.debug("fido identified %s as %s", path, puid)
 
-    logging.info("finished file identification for %s", bag_dir)
+    logger.debug("finished file identification for %s", bag_dir)
 
     return files, formats
 
