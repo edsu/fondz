@@ -1,13 +1,15 @@
 import shutil
+import logging
 import tempfile
-from os.path import join, abspath
 
+from os.path import join, abspath
 from utils import which, run, write_json
 
 mallet = which('mallet')
+logger = logging.getLogger("fondz")
 
 def topics(fondz_dir, 
-           num_topics=10, 
+           num_topics=20, 
            num_top_words=15,
            num_threads=2, 
            iterations=1000, 
@@ -37,6 +39,7 @@ def topics(fondz_dir,
         '--skip-html',
         '--remove-stopwords'
     ]
+    logger.debug("running topic modeling import: %s", import_cmd)
     run(import_cmd)
 
     train_cmd = [mallet, 'train-topics',
@@ -51,12 +54,11 @@ def topics(fondz_dir,
         '--output-doc-topics', topics_file,
         '--output-topic-keys', topic_keys_file
     ]
+    logger.debug("running topic model training %s", train_cmd)
     rc, stdout = run(train_cmd)
 
     results = summarize(text_dir, topics_file, topic_keys_file, import_cmd,
             train_cmd)
-    topics_json_file = join(fondz_dir, "js", "topics.json")
-    write_json(results, topics_json_file)
 
     shutil.rmtree(tmp_dir)
 

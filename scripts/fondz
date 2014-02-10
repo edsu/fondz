@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import fondz
+from fondz.app import app
 
 if __name__ == "__main__":
-    fondz.app.main()
+    app.main()

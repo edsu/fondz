@@ -1,3 +1,4 @@
 clik
 jinja2
+humanize
 python-magic

@@ -4,30 +4,30 @@
 <head>
   <title></title>
   <link rel="stylesheet" href="css/foundation.css" />
+  <link rel="stylesheet" href="css/jqtree.css" />
 </head>
 
 <body>
 
-
   <section class="row">
-
   <h2>Summary</h2>
-
   <table>
     <tr>
       <td>Bags</td>
-      <td>{{ bag_summary.bags|count }}</td>
+      <td>{{ humanize.intcomma(fondz.bags|count) }}</td>
     </tr>
     <tr>
       <td>Files</td>
-      <td>{{ bag_summary.num_files }}</td>
+      <td>{{ humanize.intcomma(fondz.num_files) }}</td>
     </tr>
     <tr>
       <td>Size</td>
-      <td>{{ bag_summary.bytes }}</td>
+      <td>{{ humanize.naturalsize(fondz.bytes) }}</td>
     </tr>
   </table>
+  </section>
 
+  <section class="row">
   <h2>Formats</h2>
   <table id="formats">
     <tr>
@@ -36,27 +36,33 @@
     </tr>
     {% for m in format_summary %}
     <tr>
-      <td>{{ m.name }}</td>
+      <td>{{ fondz.formats.get(m.id).name }}</td>
       <td>{{ m.files|count }}</td>
     </tr>
     {% endfor %}
   </table>
+  </section>
 
+  <section class="row">
   <h2>Topics</h2>
   <table id="topics">
     <tr>
       <th>Topics</th>
       <th>Files</th>
     </tr>
-    {% for topic in topics.topics %}
+    {% for topic in fondz.topic_model.topics %}
     <tr>
       <td>{% for word in topic.words %}{{ word }} {% endfor %}</td>
       <td>{{ topic.files|count }}</td>
     </tr>
   {% endfor %}
   </table>
-
   </section>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/tree.jquery.js"></script>
+  <script src="js/bags.js"></script>
+  <script src="js/fondz.js"></script>
 
 </body>
 

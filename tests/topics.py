@@ -1,21 +1,24 @@
-import os
 import json
 import fondz
 import shutil
 import tempfile
 import unittest
 
+from os.path import join, dirname
+from fondz.create import create
+from fondz.utils import read_json
 from fondz.topics import topics, summarize
 
-bag = os.path.join(os.path.dirname(__file__), 'data', 'bag2')
+bag = join(dirname(__file__), 'data', 'bag2')
 
 class TopicTest(unittest.TestCase):
     
     def test_topics(self):
         fondz_dir = tempfile.mkdtemp()
-        fondz.create(fondz_dir, bag)
-        topics_file = os.path.join(fondz_dir, 'js', 'topics.json')
-        results = fondz.utils.read_json(topics_file)
+        create(fondz_dir, bag, dir_exists=True)
+        fondz_file = join(fondz_dir, 'js', 'fondz.json')
+        fondz = read_json(fondz_file)
+        results = fondz['topic_model']
 
         # make sure mallet details are present
         self.assertTrue('mallet' in results)
@@ -35,9 +38,9 @@ class TopicTest(unittest.TestCase):
         # text_dir doesn't need to exist for this test, it is simply 
         # a test that the paths in the topics_file and made relative
         text_dir = '/home/ubuntu/fondz/x/derivatives'
-        topics_file = os.path.join(os.path.dirname(__file__), 'data', 
+        topics_file = join(dirname(__file__), 'data', 
                 'topics.txt')
-        topic_keys_file = os.path.join(os.path.dirname(__file__), 'data', 
+        topic_keys_file = join(dirname(__file__), 'data', 
                 'topic_keys.txt')
         results = summarize(text_dir, topics_file, topic_keys_file, ['foo',
         'bar'], ['baz', 'bez'])
