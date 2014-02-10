@@ -25,7 +25,7 @@ def bags(fondz_dir):
         }
         for line in open(manifest):
             line = line.strip()
-            cols = re.split(r' +', line)
+            cols = re.split(r' +', line, maxsplit=1)
             path = os.path.join(bag_dir, cols[1])
             st = os.stat(path)
             rel_path = os.path.join("originals", bag, path)
