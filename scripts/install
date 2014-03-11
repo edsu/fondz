@@ -26,6 +26,6 @@ then
     source $HOME/.profile
 fi
 
-# todo: install python requirements?
+# todo: install python requirements here?
 
 echo "finished installing fondz dependencies"
