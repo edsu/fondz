@@ -16,7 +16,7 @@ class CreateTests(unittest.TestCase):
 
     def test_init(self):
         d = tempfile.mkdtemp()
-        init(d)
+        init("test", d)
         self.assertTrue(isdir(join(d, "js")))
         self.assertTrue(isdir(join(d, "css")))
         self.assertTrue(isdir(join(d, "img")))
@@ -27,11 +27,10 @@ class CreateTests(unittest.TestCase):
         self.assertTrue(isfile(log_file))
         self.assertTrue(getsize(log_file) > 0)
 
-
     def test_add_bags(self):
         # create a fondz directory, and add 2 test bags to it
         fondz_dir = tempfile.mkdtemp()
-        init(fondz_dir)
+        init("test", fondz_dir)
         add_bag(fondz_dir, bag1)
         add_bag(fondz_dir, bag2)
 
@@ -69,11 +68,9 @@ class CreateTests(unittest.TestCase):
         deriv = join(fondz_dir, 'derivatives', bag_id, 'word.doc.html')
         self.assertTrue(isfile(deriv))
 
-        
-
     def test_create(self):
         d = tempfile.mkdtemp()
-        create(d, bag1, overwrite=True)
+        create("test", d, bag1, overwrite=True)
         self.assertTrue(isdir(d))
 
         # fondz.json there?
@@ -85,16 +82,31 @@ class CreateTests(unittest.TestCase):
         # topics there
         self.assertTrue(len(fondz["topic_model"]["topics"]) > 0)
 
-        # derivatives there?
+        # bag is there
+        self.assertEqual(len(fondz['bags']), 1)
+        self.assertEqual(fondz['bags'][0]['path'], bag1)
+        self.assertEqual(len(fondz['bags'][0]['manifest']), 4)
+
+        f = fondz['bags'][0]['manifest'][0]
+        self.assertEqual(f['path'], 'data/newspaper.jpg')
+        self.assertEqual(f['bytes'], 7004510)
+        self.assertEqual(f['format'], 'fmt/43')
+
+        f = fondz['bags'][0]['manifest'][1]
+        self.assertEqual(f['path'], 'data/wordperfect.wp')
+        self.assertEqual(f['bytes'], 672936)
+        self.assertEqual(f['format'], 'x-fmt/394')
+
         self.assertTrue(isfile(join(d, "derivatives", bag_id, "word.doc.html")))
         self.assertTrue(isfile(join(d, "derivatives", bag_id, "wordperfect.wp.html")))
         self.assertTrue(isfile(join(d, "derivatives", bag_id, "subdir", "word.docx.html")))
 
-        # index there?
-        index = join(d, "index.html")
-        self.assertTrue(isfile(index))
-        html = open(index).read()
-        self.assertTrue('<!doctype html>' in html)
+        # html files there?
+        for f in ["index.html", "topics.html", "formats.html", "bags.html"]:
+            html_file = join(d, f)
+            self.assertTrue(isfile(html_file))
+            html = open(html_file).read()
+            self.assertTrue('<!doctype html>' in html)
 
 
 def isjson(filename):

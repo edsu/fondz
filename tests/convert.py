@@ -4,7 +4,7 @@ import fondz
 import unittest
 
 from os.path import join, dirname, isfile, getsize
-from fondz.create import init, add_bag
+from fondz.create import add_bag
 from fondz.convert import convert_to_html, convert
 
 bag1 = join(dirname(__file__), 'data', 'bag1')

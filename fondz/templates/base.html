@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/foundation.css" />
+  <link rel="stylesheet" href="css/fondz.css" />
+
+  <script src="js/vendor/modernizr.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"><h1>{{ fondz.name }}</h1></li>
+      </ul>
+      <section class="top-bar-section">
+      <ul class="left">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="topics.html">Topics</a></li>
+        <li><a href="formats.html">Formats</a></li>
+        <li><a href="bags.html">Bags</a></li>
+        <li><a href="fondz.log">Log</a></li>
+      </ul>
+      </section>
+    </nav>
+  </header>
+
+{% block content %}
+{% endblock %}
+
+  <script src="js/vendor/jquery.js"></script>
+  <script src="js/foundation.min.js"></script>
+  <script src="js/fondz.js"></script>
+
+</body>
+</html>
+
+

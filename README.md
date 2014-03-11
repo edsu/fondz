@@ -34,7 +34,7 @@ Here's an example for generating a finding aid for two bags, the first bag
 which contains a Word document `abc.doc`, and the second which contains a 
 WordPerfect document `def.wpd`.
 
-    % fondz create example /path/to/a/bag /path/to/another/bag
+    % fondz create "Collection Name" example /path/to/a/bag /path/to/another/bag
     % tree example/
     example/
     ├── css

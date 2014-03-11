@@ -11,15 +11,18 @@ app = clik.App(
     description=description
 )
 
-@app(usage="FONDZ_DIR BAG1 [BAG2 ...]")
+@app(usage="COLLECTION_NAME COLLECTION_DIR BAG1 [BAG2 ...]")
 def create(args, console):
     """
     Create a new fondz project.
 
-    Pass in a directory to use for your fondz project, and the path to one or 
-    more bag directories.
+    Pass in a name for your collection, a directory to use for your fondz 
+    project, and the path(s) to one or more bag directories.
+
+        % fondz create "Carl Sagan Collection" /vol/fondz/sagan /vol/bags/bag1 /vol/bags/bag2
+
     """
-    if len(args) < 2:
+    if len(args) < 3:
         console.error("You must supply a fondz directory path and at least one bag.")
         sys.exit(2)
     try:
@@ -31,10 +34,10 @@ def create(args, console):
 @app(usage="FONDZ_DIR BAG_DIR")
 def add_bag(args, console):
     """
-    Create a new fondz project.
+    Add a bag to an existing fondz project.
 
-    Pass in a directory to use for your fondz project, and the path to one or 
-    more bag directories.
+    Pass in the directory for your fondz project, and the path to one or 
+    more bag directories that you would like to add to it.
     """
     if len(args) < 2:
         console.error("You must supply a fondz directory path and a bag path.")
@@ -46,7 +49,7 @@ def add_bag(args, console):
 @app(usage="FONDZ_DIR")
 def write(args, console):
     """
-    Write or re-write fondz description.
+    Write or re-write HTML files for a given fondz project.
     """
     if len(args) < 1:
         console.error("You must supply a fondz directory path")

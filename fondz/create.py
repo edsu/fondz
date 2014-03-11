@@ -16,7 +16,7 @@ from fondz.formats import get_file_formats
 from fondz.utils import render_to, write_json, read_json, template_dir
 
 
-def create(fondz_dir, *bags, **kwargs):
+def create(name, fondz_dir, *bags, **kwargs):
     """
     create will initialize initialize a new fondz directory add one or more
     bags to it, convert what it can to web accessible formats, run topic 
@@ -25,7 +25,7 @@ def create(fondz_dir, *bags, **kwargs):
     if not kwargs.get("overwrite", False) and isdir(fondz_dir):
         raise Exception('fondz directory "%s" already exists' % fondz_dir)
 
-    init(fondz_dir)
+    init(name, fondz_dir)
 
     # add all the bags
     for bag in bags:
@@ -38,7 +38,7 @@ def create(fondz_dir, *bags, **kwargs):
     write(fondz_dir)
 
 
-def init(fondz_dir):
+def init(name, fondz_dir):
     _mkdir(fondz_dir)
     _setup_logging(fondz_dir)
     
@@ -46,13 +46,11 @@ def init(fondz_dir):
     logger.info("created fondz %s", fondz_dir)
 
     _mkdir(fondz_dir, "derivatives")
-    tmpl_dir = template_dir()
-    shutil.copytree(join(tmpl_dir, "js"), join(fondz_dir, "js"))
-    shutil.copytree(join(tmpl_dir, "css"), join(fondz_dir, "css"))
-    shutil.copytree(join(tmpl_dir, "img"), join(fondz_dir, "img"))
-    fondz_file = _fondz(fondz_dir)
+
+    fondz_file = _fondz_file(fondz_dir)
     fondz = {
-        "bags":[],
+        "name": name,
+        "bags": [],
         "bytes": 0,
         "num_files": 0,
         "formats": {}
@@ -70,7 +68,7 @@ def add_bag(fondz_dir, bag_dir):
     logger.info("adding bag %s to %s", bag_dir, fondz_dir)
 
     bag_dir = abspath(bag_dir)
-    fondz_file = _fondz(fondz_dir)
+    fondz_file = _fondz_file(fondz_dir)
     fondz = read_json(fondz_file)
     for bag in fondz["bags"]:
         if bag["path"] == bag_dir:
@@ -87,19 +85,19 @@ def add_bag(fondz_dir, bag_dir):
 
 
 def write(fondz_dir):
+    _setup_logging(fondz_dir)
+
     logger = logging.getLogger("fondz")
     logger.info("writing fondz description for %s", fondz_dir)
 
-    index_file = join(fondz_dir, "index.html")
-    fondz_file = _fondz(fondz_dir)
+    fondz_file = _fondz_file(fondz_dir)
     fondz = read_json(fondz_file)
-    format_summary = _summarize_formats(fondz)
 
-    render_to('index.html', index_file, 
-              fondz=fondz,
-              humanize=humanize,
-              format_summary=format_summary)
-
+    _write_static(fondz_dir)
+    _write_index_html(fondz_dir, fondz) 
+    _write_topics_html(fondz_dir, fondz)
+    _write_bags_html(fondz_dir, fondz)
+    _write_formats_html(fondz_dir, fondz)
 
 def _get_bag(path):
     bag = {
@@ -162,14 +160,53 @@ def _summarize_formats(fondz):
 def _add_topics(fondz_dir):
     logger = logging.getLogger("fondz")
     logger.info("doing topic modeling for %s", fondz_dir)
-    fondz_file = _fondz(fondz_dir)
+    fondz_file = _fondz_file(fondz_dir)
     fondz = read_json(fondz_file)
     fondz['topic_model'] = topics(fondz_dir)
     write_json(fondz, fondz_file)
 
 
-def _fondz(fondz_dir):
-    return join(fondz_dir, "js", "fondz.json")
+def _fondz_file(fondz_dir):
+    return join(fondz_dir, "fondz.json")
+
+
+def _write_static(fondz_dir):
+    tmpl_dir = template_dir()
+    for dir_name in ["js", "css", "img"]:
+        source_dir = join(tmpl_dir, dir_name)
+        target_dir = join(fondz_dir, dir_name)
+        if isdir(target_dir):
+            shutil.rmtree(target_dir)
+        shutil.copytree(source_dir, target_dir)
+
+
+def _write_index_html(fondz_dir, fondz):
+    index_file = join(fondz_dir, "index.html")
+    format_summary = _summarize_formats(fondz)
+    render_to('index.html', index_file, 
+              fondz=fondz,
+              humanize=humanize,
+              format_summary=format_summary)
+ 
+
+def _write_topics_html(fondz_dir, fondz):
+    topics_html = join(fondz_dir, "topics.html")
+    render_to('topics.html', topics_html, fondz=fondz, humanize=humanize)
+
+
+def _write_bags_html(fondz_dir, fondz):
+    bags_html = join(fondz_dir, "bags.html")
+    render_to('bags.html', bags_html, fondz=fondz, humanize=humanize)
+
+
+def _write_formats_html(fondz_dir, fondz):
+    format_summary = _summarize_formats(fondz)
+    formats_html = join(fondz_dir, "formats.html")
+    render_to('formats.html', 
+              formats_html, 
+              fondz=fondz, 
+              format_summary=format_summary,
+              humanize=humanize)
 
 
 def _mkdir(*parts):

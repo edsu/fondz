@@ -15,7 +15,7 @@ class TopicTest(unittest.TestCase):
     
     def test_topics(self):
         fondz_dir = tempfile.mkdtemp()
-        create(fondz_dir, bag, overwrite=True)
+        create("test", fondz_dir, bag, overwrite=True)
         fondz_file = join(fondz_dir, 'js', 'fondz.json')
         fondz = read_json(fondz_file)
         results = fondz['topic_model']

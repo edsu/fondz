@@ -1,0 +1,47 @@
+/* fondz.css */
+
+header {
+  margin-bottom: 20px;
+}
+
+nav h1 {
+    color: blue;
+}
+
+nav {
+    padding-left: 10px;
+}
+
+#summary {
+    margin: 2% 10% 2% 10%;
+    padding: 10px;
+    border: thin solid #dddddd;
+    background-color: #eeeeee;
+}
+
+#summary p {
+    font-size: larger;
+}
+
+.topic {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 10% 10px 10%;
+}
+
+.topic-words {
+    font-size: 18pt;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0ffff;
+    line-height: 1.4em;
+}
+
+.topic-word {
+    padding: 4px;
+}
+
+.topic-files {
+    width: 100%;
+}
+
