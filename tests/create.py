@@ -73,7 +73,7 @@ class CreateTests(unittest.TestCase):
 
     def test_create(self):
         d = tempfile.mkdtemp()
-        create(d, bag1, dir_exists=True)
+        create(d, bag1, overwrite=True)
         self.assertTrue(isdir(d))
 
         # fondz.json there?

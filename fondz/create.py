@@ -22,7 +22,7 @@ def create(fondz_dir, *bags, **kwargs):
     bags to it, convert what it can to web accessible formats, run topic 
     modeling, and format identification, and write out a HTML description
     """
-    if not kwargs.get("dir_exists", False) and isdir(fondz_dir):
+    if not kwargs.get("overwrite", False) and isdir(fondz_dir):
         raise Exception('fondz directory "%s" already exists' % fondz_dir)
 
     init(fondz_dir)
