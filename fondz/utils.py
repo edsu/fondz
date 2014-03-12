@@ -2,6 +2,7 @@ import os
 import json
 import jinja2
 import logging
+import cStringIO
 import subprocess
 
 from os.path import isfile, join, dirname
@@ -21,12 +22,10 @@ def which(program):
 def run(cmd):
     logger.debug("starting command %s", cmd)
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    for line in p.stderr:
-        line = line.strip()
-        logger.debug(line)
-    p.wait()
+    out, err = p.communicate()
     logger.debug("finished command, exit code %s", p.returncode)
-    return p.returncode, p.stdout
+    logger.debug("output: %s", out)
+    return p.returncode, cStringIO.StringIO(out)
 
 
 def write_json(d, filename):
