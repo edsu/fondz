@@ -3,6 +3,8 @@ import clik
 import fondz
 import logging
 
+from optparse import make_option as opt
+
 version = '0.0.1'
 description = "create automated archival descriptions of digital content"
 app = clik.App(
@@ -11,8 +13,16 @@ app = clik.App(
     description=description
 )
 
-@app(usage="COLLECTION_NAME COLLECTION_DIR BAG1 [BAG2 ...]")
-def create(args, console):
+@app(usage="COLLECTION_NAME COLLECTION_DIR BAG1 [BAG2 ...]",
+     opts=(
+         opt('-o', 
+             '--overwrite', 
+             dest='overwrite', 
+             action='store_true',
+             help='use an existing directory for the fondz project',
+             default=False)))
+
+def create(args, opts, console):
     """
     Create a new fondz project.
 
@@ -26,7 +36,7 @@ def create(args, console):
         console.error("You must supply a fondz directory path and at least one bag.")
         sys.exit(2)
     try:
-        fondz.create(*args)
+        fondz.create(*args, overwrite=opts.overwrite)
     except Exception as e:
         console.error(e)
 
