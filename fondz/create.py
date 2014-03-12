@@ -190,9 +190,28 @@ def _write_index_html(fondz_dir, fondz):
  
 
 def _write_topics_html(fondz_dir, fondz):
+    # write the overview
     topics_html = join(fondz_dir, "topics.html")
-    render_to('topics.html', topics_html, fondz=fondz, humanize=humanize)
+    render_to(
+        'topics.html',
+        topics_html, 
+        fondz=fondz, 
+        humanize=humanize
+    )
 
+    # write the topic specific files
+    count = 0
+    for topic in fondz['topic_model']['topics']:
+        count += 1
+        topic_file = join(fondz_dir, "topic-%02i.html" % count)
+        render_to(
+            'topic.html', 
+            topic_file, 
+            fondz=fondz, 
+            topic=topic,
+            count=0,
+            humanize=humanize
+        )
 
 def _write_bags_html(fondz_dir, fondz):
     bags_html = join(fondz_dir, "bags.html")
@@ -213,6 +232,7 @@ def _mkdir(*parts):
     path = join(*parts)
     if not isdir(path):
         os.makedirs(path)
+    return path
 
 def _setup_logging(fondz_dir):
     logger = logging.getLogger("fondz")

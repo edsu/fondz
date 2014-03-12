@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{ fondz.name }} - Topic {{ count }}{% endblock %}
+
+{% block content %}
+
+<section id="summary" class="row">
+<p>This grouping of keywords is a topic that was extracted using the 
+<a href="http://mallet.cs.umass.edu/">Mallet</a>
+topic modeling software. Click on each filename to see an HTML 
+representation of the original file.
+</section>
+
+
+<section class="topic row">
+
+  <div class="topic-words text-center">
+    {% for word in topic.words %}
+    <span class="topic-word">{{ word }}</span>
+    {% endfor %}
+  </div>
+
+  <table class="topic-files">
+    <tr><th>File</th><th>Score</th></tr>
+    {% for f in topic.files %}
+    <tr>
+      <td><a href="derivatives/{{ f.0 }}">{{ f.0 }}</a></td>
+      <td>{{ f.1 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</section>
+
+{% endblock %}

@@ -26,7 +26,7 @@ nav {
 .topic {
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 10px 10% 10px 10%;
+    /*padding: 10px 10% 10px 10%;*/
 }
 
 .topic-words {
@@ -35,6 +35,7 @@ nav {
     margin-bottom: 10px;
     background-color: #f0ffff;
     line-height: 1.4em;
+    color: black;
 }
 
 .topic-word {

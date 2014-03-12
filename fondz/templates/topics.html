@@ -7,28 +7,21 @@
 <section id="summary" class="row">
 <p>Below is a list of topic keywords that were extracted using the 
 <a href="http://mallet.cs.umass.edu/">Mallet</a>
-topic modeling software. Each topic includes the files which are 
-associated with it.
+topic modeling software. Click on the topic to see a list of 
+files associated with it. You may want to add summary headings to 
+each collection of words.
 </section>
 
-{% for format in fondz.topic_model.topics %}
+{% for topic in fondz.topic_model.topics %}
 <section class="topic row">
 
-  <div class="topic-words text-center">
-    {% for word in format.words %}
-    <span class="topic-word">{{ word }}</span>
-    {% endfor %}
-  </div>
-
-  <table class="topic-files">
-    <tr><th>File</th><th>Score</th></tr>
-    {% for f in format.files %}
-    <tr>
-      <td><a href="derivatives/{{ f.0 }}">{{ f.0 }}</a></td>
-      <td>{{ f.1 }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+  <a href="{{ 'topic-%02i.html' % loop.index }}">
+    <div class="topic-words text-center">
+      {% for word in topic.words %}
+      <span class="topic-word">{{ word }}</span>
+      {% endfor %}
+    </div>
+  </a>
 
 </section>
 {% endfor %}
