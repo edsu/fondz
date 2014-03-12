@@ -16,7 +16,6 @@ integration layer for other tools such as:
 * [libreoffice](http://www.libreoffice.org/) - for converting various document formats to html
 * [mallet](http://mallet.cs.umass.edu/) - for creating topic models of textual content
 * [fido](https://github.com/openplanets/fido) - for identifying file formats using the [Pronom](http://www.nationalarchives.gov.uk/PRONOM/Default.aspx) registry.
-* [file/libmagic](http://www.darwinsys.com/file/) - the venerable unix file identification utility
 * [exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool/) - for extracting image metadata
 
 As better opensource tools for converting documents and summarizing their 
