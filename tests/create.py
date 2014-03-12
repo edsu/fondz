@@ -17,9 +17,6 @@ class CreateTests(unittest.TestCase):
     def test_init(self):
         d = tempfile.mkdtemp()
         init("test", d)
-        self.assertTrue(isdir(join(d, "js")))
-        self.assertTrue(isdir(join(d, "css")))
-        self.assertTrue(isdir(join(d, "img")))
         self.assertTrue(isdir(join(d, "derivatives")))
         self.assertTrue(isfile(join(d, "fondz.json")))
 
