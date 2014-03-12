@@ -17,11 +17,8 @@ class CreateTests(unittest.TestCase):
     def test_init(self):
         d = tempfile.mkdtemp()
         init("test", d)
-        self.assertTrue(isdir(join(d, "js")))
-        self.assertTrue(isdir(join(d, "css")))
-        self.assertTrue(isdir(join(d, "img")))
         self.assertTrue(isdir(join(d, "derivatives")))
-        self.assertTrue(isfile(join(d, "js", "fondz.json")))
+        self.assertTrue(isfile(join(d, "fondz.json")))
 
         log_file = join(d, "fondz.log")
         self.assertTrue(isfile(log_file))
@@ -35,7 +32,7 @@ class CreateTests(unittest.TestCase):
         add_bag(fondz_dir, bag2)
 
         # generate and load fondz.js
-        fondz_json = join(fondz_dir, "js", "fondz.json")
+        fondz_json = join(fondz_dir, "fondz.json")
         self.assertTrue(isfile(fondz_json))
         result = read_json(fondz_json)
 
@@ -74,7 +71,7 @@ class CreateTests(unittest.TestCase):
         self.assertTrue(isdir(d))
 
         # fondz.json there?
-        fondz_file = join(d, "js", "fondz.json")
+        fondz_file = join(d, "fondz.json")
         self.assertTrue(isfile(fondz_file))
         fondz = read_json(fondz_file)
         bag_id = fondz["bags"][0]["id"]
