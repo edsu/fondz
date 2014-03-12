@@ -13,10 +13,10 @@ nav {
 }
 
 #summary {
-    margin: 2% 10% 2% 10%;
-    padding: 10px;
     border: thin solid #dddddd;
     background-color: #eeeeee;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 #summary p {
@@ -52,4 +52,8 @@ nav {
 
 .topic-count a {
     color: black;
+}
+
+#content {
+    margin: 30px;
 }
