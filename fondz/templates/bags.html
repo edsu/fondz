@@ -14,14 +14,14 @@
 <section class="bags row">
   <table class="large-12">
     <tr>
-      <th>Path</th>
+      <th class="text-left">Bag Location</th>
       <th class="text-right">Files</th>
       <th class="text-right">Size</th>
     </tr>
     {% for bag in fondz.bags %}
     <tr>
-      <td><a href="{{ 'bag-%05i.html' % loop.index }}">{{ bag.path }}</a></td>
-      <td class="text-right">{{ humanize.intcomma(bag.manifest|count) }}</td>
+      <td>{{ bag.path }}</td>
+      <td class="text-right"><a href="{{ 'bag-%05i.html' % loop.index }}">{{ humanize.intcomma(bag.manifest|count) }}</td>
       <td class="text-right">{{ humanize.naturalsize(bag.bytes) }}</td>
     </tr>
     {% endfor %}

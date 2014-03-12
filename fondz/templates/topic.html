@@ -15,13 +15,15 @@ representation of the original file.
 
 <section class="topic row">
 
-  <div class="topic-words text-center">
+  <div class="topic-words text-center large-12">
     {% for word in topic.words %}
     <span class="topic-word">{{ word }}</span>
     {% endfor %}
   </div>
 
-  <table class="topic-files">
+  <br>
+
+  <table class="topic-files large-12">
     <tr><th>File</th><th>Score</th></tr>
     {% for f in topic.files %}
     <tr>

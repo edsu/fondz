@@ -16,6 +16,11 @@ each collection of words.
 {% for topic in fondz.topic_model.topics %}
 <section class="topic row">
 
+  <div class="topic-count large-2 column text-center">
+  <a href="{{ 'topic-%02i.html' % loop.index }}"><span class="topic-count">{{ humanize.intcomma(topic.files|count) }}</a>
+  </div>
+
+  <div class="large-10 column">
   <a href="{{ 'topic-%02i.html' % loop.index }}">
     <div class="topic-words text-center">
       {% for word in topic.words %}
@@ -23,6 +28,7 @@ each collection of words.
       {% endfor %}
     </div>
   </a>
+  </div>
 
 </section>
 {% endfor %}

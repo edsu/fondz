@@ -4,54 +4,44 @@
 
 {% block content %}
 
-<section class="row">
-<h3>Summary</h3>
-<table>
-  <tr>
-    <td>Bags</td>
-    <td>{{ humanize.intcomma(fondz.bags|count) }}</td>
-  </tr>
-  <tr>
-    <td>Files</td>
-    <td>{{ humanize.intcomma(fondz.num_files) }}</td>
-  </tr>
-  <tr>
-    <td>Size</td>
-    <td>{{ humanize.naturalsize(fondz.bytes) }}</td>
-  </tr>
-</table>
+<div class="row">
+
+<section>
+  <h2>Summary</h2>
+  <div class="large-12">
+    <p>{{ fondz.summary }}</p>
+  </div>
 </section>
 
-<section class="row">
-<h3>Formats</h3>
-<table id="formats">
-  <tr>
-  <th>Type</th>
-  <th>Files</th>
-  </tr>
-  {% for m in format_summary %}
-  <tr>
-    <td>{{ fondz.formats.get(m.id).name }}</td>
-    <td>{{ m.files|count }}</td>
-  </tr>
-  {% endfor %}
-</table>
+<section>
+  <h2>Scope</h2>
+  <div class="large-12">
+    <p>{{ fondz.scope }}</p>
+  </div>
 </section>
 
-<section class="row">
-<h3>Topics</h3>
-<table id="topics">
-  <tr>
-    <th>Topics</th>
-    <th>Files</th>
-  </tr>
-  {% for topic in fondz.topic_model.topics %}
-  <tr>
-    <td>{% for word in topic.words %}{{ word }} {% endfor %}</td>
-    <td>{{ topic.files|count }}</td>
-  </tr>
-{% endfor %}
-</table>
+<section>
+  <h2>File Details</h2>
+  <table class="large-12">
+    <tr>
+      <td>Bags</td>
+      <td>{{ humanize.intcomma(fondz.bags|count) }}</td>
+    </tr>
+    <tr>
+      <td>Files</td>
+      <td>{{ humanize.intcomma(fondz.num_files) }}</td>
+    </tr>
+    <tr>
+      <td>Size</td>
+      <td>{{ humanize.naturalsize(fondz.bytes) }}</td>
+    </tr>
+    <tr>
+      <td>Formats</td>
+      <td>{{ format_summary|count }}</td>
+    </tr>
+  </table>
 </section>
+
+</div>
 
 {% endblock %}

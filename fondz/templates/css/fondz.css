@@ -26,15 +26,14 @@ nav {
 .topic {
     margin-top: 20px;
     margin-bottom: 20px;
+    line-height: 1.4em;
 }
 
 .topic-words {
-    font-size: 16pt;
+    font-size: 14pt;
     padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f0ffff;
-    line-height: 1.4em;
     color: black;
+    background-color: #f0ffff;
 }
 
 .topic-word {
@@ -42,5 +41,15 @@ nav {
 }
 
 .topic-files {
-    width: 100%;
+}
+
+.topic-count {
+    font-size: 20pt;
+    font-weight: bold;
+    vertical-align: middle;
+    line-height: 2em;
+}
+
+.topic-count a {
+    color: black;
 }
