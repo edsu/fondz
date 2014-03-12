@@ -6,36 +6,26 @@
 
 <section id="summary" class="row">
   <p>
-  Below is a list of the bags that are part of this collection.
+  Below is a list of the bags that are part of this collection. Click on 
+  one of them to see details about the bag.
   </p>
 </section>
 
 <section class="bags row">
-
-  {% for bag in fondz.bags %}
-  <h3>Bag: {{ bag.path }}</h3>
-
-  <table>
+  <table class="large-12">
     <tr>
-      <th>Filename</th>
-      <th>Created</th>
-      <th>Size</th>
-      <th>Format</th>
-      <th>MD5</th>
+      <th>Path</th>
+      <th class="text-right">Files</th>
+      <th class="text-right">Size</th>
     </tr>
-    {% for f in bag.manifest %}
+    {% for bag in fondz.bags %}
     <tr>
-      <td>{{ f.path }}</td>
-      <td>{{ f.created }}</td>
-      <td>{{ f.bytes }}</td>
-      <td>{{ f.format }}</td>
-      <td>{{ f.md5 }}</td>
+      <td><a href="{{ 'bag-%05i.html' % loop.index }}">{{ bag.path }}</a></td>
+      <td class="text-right">{{ humanize.intcomma(bag.manifest|count) }}</td>
+      <td class="text-right">{{ humanize.naturalsize(bag.bytes) }}</td>
     </tr>
     {% endfor %}
   </table>
-  {% endfor %}
-
-  <hr>
-
 </section>
+
 {% endblock %}

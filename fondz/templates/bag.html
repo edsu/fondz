@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ fondz.name }} - Bag{% endblock %}
+
+{% block content %}
+
+<section id="summary" class="row">
+  <p>
+  Below are details for the contents of the bag at <em>{{ bag.path }}</em>.
+  </p>
+</section>
+
+<section class="bag row">
+  <table class="large-12">
+    <tr>
+      <th>Filename</th>
+      <th>Created</th>
+      <th>MD5</th>
+      <th>Format</th>
+      <th class="text-right">Size</th>
+    </tr>
+    {% for f in bag.manifest %}
+    <tr>
+      <td>{{ f.path }}</td>
+      <td>{{ f.created }}</td>
+      <td>{{ f.md5 }}</td>
+      <td><a href="http://www.nationalarchives.gov.uk/pronom/{{ f.format }}">{{ f.format }}</a></td>
+      <td class="text-right">{{ f.bytes }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</section>
+{% endblock %}

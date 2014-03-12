@@ -8,17 +8,27 @@
   <p>
   Below is a list of file formats that were identified by 
   <a href="http://www.openplanetsfoundation.org/software/fido">Fido</a>.
+  Clicking on the PRONOM ID for the format will display information
+  about the format in <a href="http://www.nationalarchives.gov.uk/PRONOM/">PRONOM</a>.
   </p>
   </section>
 
-  {% for m in format_summary %}
-  <section class="format row">
-  <h3>{{ fondz.formats.get(m.id).name }}</h3>
-    <table>
-      {% for file in m.files %}
-      <tr><td>{{ file }}</td></tr>
-      {% endfor %}
-    </table>
+  <section class="row">
+
+  <table class="large-12" id="formats">
+    <tr>
+    <th>PRONOM ID</th>
+    <th>Name</th>
+    <th class="text-right">Files</th>
+    </tr>
+    {% for m in format_summary %}
+    <tr>
+      <td><a href="http://www.nationalarchives.gov.uk/pronom/{{ m.id }}">{{ m.id }}</a></td>
+      <td>{{ fondz.formats.get(m.id).name }}</td>
+      <td class="text-right"><a href="{{ 'format-%03i.html' % loop.index }}">{{ humanize.intcomma(m.files|count) }}</a></td>
+    </tr>
+    {% endfor %}
+  </table>
   </section>
-  {% endfor %}
+
 {% endblock %}

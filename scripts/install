@@ -6,7 +6,7 @@ FONDZ_HOME=/opt/fondz
 mkdir $FONDZ_HOME
 
 echo "- installing system level dependencies"
-apt-get install --yes libreoffice python-virtualenv python-pip mercurial default-jdk ant libimage-exiftool-perl gcc
+apt-get install --yes libreoffice python-virtualenv virtualenvwrapper python-pip mercurial default-jdk ant libimage-exiftool-perl gcc
 
 echo "- installing mallet into $FONDZ_HOME/mallet"
 hg clone http://hg-iesl.cs.umass.edu/hg/mallet >/dev/null

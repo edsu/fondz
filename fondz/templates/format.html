@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ fondz.name }} - Formats{% endblock %}
+
+{% block content %}
+
+  <section id="summary" class="row">
+  <p>
+  Below is a list of file formats that were identified by 
+  <a href="http://www.openplanetsfoundation.org/software/fido">Fido</a>.
+  </p>
+  </section>
+
+  <section class="format row">
+  <h3>{{ fondz.formats.get(format.id).name }}</h3>
+    <table>
+      {% for file in format.files %}
+      <tr><td>{{ file }}</td></tr>
+      {% endfor %}
+    </table>
+  </section>
+
+{% endblock %}

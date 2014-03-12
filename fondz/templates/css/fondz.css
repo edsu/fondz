@@ -26,11 +26,10 @@ nav {
 .topic {
     margin-top: 20px;
     margin-bottom: 20px;
-    /*padding: 10px 10% 10px 10%;*/
 }
 
 .topic-words {
-    font-size: 18pt;
+    font-size: 16pt;
     padding: 10px;
     margin-bottom: 10px;
     background-color: #f0ffff;
@@ -45,4 +44,3 @@ nav {
 .topic-files {
     width: 100%;
 }
-

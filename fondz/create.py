@@ -213,9 +213,18 @@ def _write_topics_html(fondz_dir, fondz):
             humanize=humanize
         )
 
+
 def _write_bags_html(fondz_dir, fondz):
+    # write overview
     bags_html = join(fondz_dir, "bags.html")
     render_to('bags.html', bags_html, fondz=fondz, humanize=humanize)
+
+    # and bag specific pages
+    count = 0
+    for bag in fondz['bags']:
+        count += 1
+        bag_html = join(fondz_dir, "bag-%05i.html" % count)
+        render_to('bag.html', bag_html, fondz=fondz, bag=bag, humanize=humanize)
 
 
 def _write_formats_html(fondz_dir, fondz):
@@ -226,6 +235,13 @@ def _write_formats_html(fondz_dir, fondz):
               fondz=fondz, 
               format_summary=format_summary,
               humanize=humanize)
+
+    count = 0
+    for format in format_summary:
+        count += 1
+        format_html = join(fondz_dir, "format-%03i.html" % count)
+        render_to('format.html', format_html, fondz=fondz, format=format, 
+                  humanize=humanize)
 
 
 def _mkdir(*parts):
