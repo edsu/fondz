@@ -2,3 +2,5 @@ clik
 jinja2
 humanize
 python-magic
+pdfminer==20131113
+pytest

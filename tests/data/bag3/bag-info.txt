@@ -1,0 +1,3 @@
+Bag-Software-Agent: bagit.py <http://github.com/edsu/bagit>
+Bagging-Date: 2014-03-13
+Payload-Oxum: 125301.1
