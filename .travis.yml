@@ -11,7 +11,6 @@ python:
 install:
     - sudo apt-get update --fix-missing
     - sudo scripts/install
-    - pip install -r requirements.txt
 
 script:
     - export PATH=/opt/fondz/mallet/bin:/opt/fondz/fido/fido:$PATH

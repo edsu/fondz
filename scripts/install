@@ -1,31 +1,51 @@
 #!/bin/bash
 
 # ubuntu install: windows/osx should be doable by riffing on this
+#
+# this script installs system and python depdencies globally so 
+# you will need to run it with sudo
 
-FONDZ_HOME=/opt/fondz
-mkdir $FONDZ_HOME
+if [ -z $FONDZ_HOME ]; then 
+    FONDZ_HOME=/opt/fondz
+fi
+
+if [ ! -d $FONDZ_HOME ]; then
+    echo "- creating $FONDZ_HOME"
+    mkdir $FONDZ_HOME
+fi
 
 echo "- installing system level dependencies"
 apt-get install --yes libreoffice python-virtualenv virtualenvwrapper python-pip mercurial default-jdk ant libimage-exiftool-perl gcc
 
-echo "- installing mallet into $FONDZ_HOME/mallet"
-hg clone http://hg-iesl.cs.umass.edu/hg/mallet >/dev/null
-cd mallet ; ant >/dev/null ; cd ..
-mv mallet "$FONDZ_HOME/mallet"
+MALLET_HOME="$FONDZ_HOME/mallet"
+if [ ! -d "$MALLET_HOME" ]; then
+    echo "- installing mallet in $MALLET_HOME"
+    hg clone http://hg-iesl.cs.umass.edu/hg/mallet >/dev/null
+    cd mallet ; ant >/dev/null ; cd ..
+    mv mallet "$MALLET_HOME"
+fi
 
-echo "- installing fido into /opt/fondz/fido"
-wget --quiet https://github.com/openplanets/fido/archive/1.3.1-70.tar.gz
-tar xfz 1.3.1-70.tar.gz
-mv fido-1.3.1-70 "$FONDZ_HOME/fido"
-rm 1.3.1-70.tar.gz
+FIDO_HOME="$FONDZ_HOME/fido"
+if [ ! -d "$FIDO_HOME" ]; then
+    echo "- installing fido in $FIDO_HOME"
+    wget --quiet https://github.com/openplanets/fido/archive/1.3.1-70.tar.gz
+    tar xfz 1.3.1-70.tar.gz
+    mv fido-1.3.1-70 "$FIDO_HOME"
+    rm 1.3.1-70.tar.gz
+fi
 
 if [ -z "$TRAVIS" ]
 then
     echo "- updating PATH in $HOME/.profile"
-    echo "export PATH=$FONDZ_HOME/mallet/bin:$FONDZ_HOME/fido/fido:\$PATH" >> $HOME/.profile
+    echo "export PATH=$MALLET_HOME/bin:$FIDO_HOME/fido:\$PATH" >> $HOME/.profile
     source $HOME/.profile
 fi
 
-# todo: install python requirements here?
+echo "- installing python dependencies"
+pip install -r requirements.txt
 
-echo "finished installing fondz dependencies"
+echo "- installing fondz"
+python setup.py install
+
+echo "finished installation!"
+echo "you should be able to run fondz from the command line now"
