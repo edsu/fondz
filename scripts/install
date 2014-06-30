@@ -42,5 +42,10 @@ pip install -r requirements.txt
 echo "- installing fondz"
 python setup.py install
 
+# this artifact of the setup.py install can interfere with running tests later
+if [ -d "fondz.egg-info" ]; then
+    rm -rf fondz.egg-info
+fi
+
 echo "finished installation!"
 echo "you should be able to run fondz from the command line now"
