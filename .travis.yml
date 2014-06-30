@@ -14,6 +14,7 @@ install:
 
 script:
     - export PATH=/opt/fondz/mallet/bin:/opt/fondz/fido/fido:$PATH
+    - pip install -r requirements.txt
     - python setup.py test 
 
 after_failure:

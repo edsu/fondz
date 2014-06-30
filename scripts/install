@@ -1,21 +1,19 @@
 #!/bin/bash
 
-# ubuntu install: windows/osx should be doable by riffing on this
-#
-# this script installs system and python depdencies globally so 
-# you will need to run it with sudo
+# this script installs the system and python depdencies for fondz in /opt/fondz
+# so you will need to run it with sudo. It is specific to Ubuntu but you should
+# be able to riff off of it to install on other operating systems like OS X.
+
+echo "- installing system level dependencies"
+apt-get install --yes libreoffice python-virtualenv virtualenvwrapper python-pip mercurial default-jdk ant libimage-exiftool-perl gcc
 
 if [ -z $FONDZ_HOME ]; then 
     FONDZ_HOME=/opt/fondz
 fi
-
 if [ ! -d $FONDZ_HOME ]; then
     echo "- creating $FONDZ_HOME"
     mkdir $FONDZ_HOME
 fi
-
-echo "- installing system level dependencies"
-apt-get install --yes libreoffice python-virtualenv virtualenvwrapper python-pip mercurial default-jdk ant libimage-exiftool-perl gcc
 
 MALLET_HOME="$FONDZ_HOME/mallet"
 if [ ! -d "$MALLET_HOME" ]; then
@@ -34,12 +32,9 @@ if [ ! -d "$FIDO_HOME" ]; then
     rm 1.3.1-70.tar.gz
 fi
 
-if [ -z "$TRAVIS" ]
-then
-    echo "- updating PATH in $HOME/.profile"
-    echo "export PATH=$MALLET_HOME/bin:$FIDO_HOME/fido:\$PATH" >> $HOME/.profile
-    source $HOME/.profile
-fi
+echo "- updating PATH in $HOME/.profile"
+echo "export PATH=$MALLET_HOME/bin:$FIDO_HOME/fido:\$PATH" >> $HOME/.profile
+source "$HOME/.profile"
 
 echo "- installing python dependencies"
 pip install -r requirements.txt
