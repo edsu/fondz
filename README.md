@@ -57,7 +57,10 @@ browser and browse the content.
 Install
 -------
 
-On Ubuntu you should be able to install fondz by running `scripts/install`.
+On Ubuntu you should be able to install fondz by running: 
+
+    sudo scripts/install
+
 If you are on OSX or Windows you should be able to read the install script and
 figure out what you need to install and put in your PATH.
 
